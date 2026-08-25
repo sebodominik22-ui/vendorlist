@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PLUG'S PLACE | Supplier Marketplace</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --bg:#050507;
+    --card:#0d0f14;
+    --card2:#11141b;
+    --border:#202531;
+    --purple:#8b5cf6;
+    --purple2:#6d28d9;
+    --text:#fff;
+    --muted:#9299a8;
+    --green:#22c55e;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:
+        radial-gradient(circle at 50% -10%,rgba(139,92,246,.18),transparent 35%),
+        #050507;
+    color:white;
+    font-family:'Plus Jakarta Sans',sans-serif;
+    min-height:100vh;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+button,
+input{
+    font-family:inherit;
+}
+
+button{
+    border:0;
+    cursor:pointer;
+}
+
+.container{
+    width:min(1200px,calc(100% - 30px));
+    margin:auto;
+}
+
+/* TOP BAR */
+
+.topbar{
+    background:linear-gradient(90deg,#5b21b6,#8b5cf6,#5b21b6);
+    padding:9px 15px;
+    text-align:center;
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:.4px;
+}
+
+.timer{
+    display:inline-block;
+    margin-left:7px;
+    padding:3px 8px;
+    background:#0006;
+    border-radius:6px;
+    color:#fde047;
+    font-family:monospace;
+}
+
+/* NAV */
+
+nav{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:rgba(5,5,7,.84);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid #ffffff10;
+}
+
+.nav{
+    height:68px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    font-size:21px;
+    font-weight:900;
+    letter-spacing:-.8px;
+}
+
+.logo span{
+    color:var(--purple);
+}
+
+.nav-links{
+    display:flex;
+    gap:28px;
+    color:#a7adba;
+    font-size:12px;
+    font-weight:700;
+}
+
+.nav-links a:hover{
+    color:white;
+}
+
+.ig-btn{
+    background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);
+    padding:9px 15px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:800;
+}
+
+/* HERO */
+
+.hero{
+    text-align:center;
+    padding:65px 0 42px;
+}
+
+.live{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    padding:7px 13px;
+    border:1px solid #8b5cf655;
+    background:#8b5cf615;
+    color:#c4b5fd;
+    border-radius:30px;
+    font-size:10px;
+    font-weight:800;
+    margin-bottom:20px;
+}
+
+.dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#22c55e;
+    box-shadow:0 0 10px #22c55e;
+}
+
+.hero h1{
+    max-width:850px;
+    margin:auto;
+    font-size:clamp(36px,6vw,68px);
+    line-height:1.02;
+    font-weight:900;
+    letter-spacing:-3px;
+}
+
+.hero h1 span{
+    color:var(--purple);
+}
+
+.hero p{
+    max-width:600px;
+    margin:20px auto 0;
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.7;
+}
+
+/* SEARCH */
+
+.search-area{
+    margin:25px 0 30px;
+    display:flex;
+    gap:10px;
+}
+
+.search{
+    flex:1;
+    background:#0c0e13;
+    border:1px solid var(--border);
+    color:white;
+    padding:14px 17px;
+    border-radius:12px;
+    outline:none;
+}
+
+.search:focus{
+    border-color:var(--purple);
+}
+
+.search::placeholder{
+    color:#687080;
+}
+
+/* CATEGORIES */
+
+.categories{
+    display:flex;
+    gap:8px;
+    overflow:auto;
+    padding-bottom:8px;
+    margin-bottom:25px;
+}
+
+.category{
+    white-space:nowrap;
+    padding:10px 15px;
+    border-radius:22px;
+    background:#0d0f14;
+    color:#8f97a7;
+    border:1px solid var(--border);
+    font-size:11px;
+    font-weight:800;
+}
+
+.category.active,
+.category:hover{
+    color:white;
+    background:linear-gradient(135deg,var(--purple),var(--purple2));
+    border-color:var(--purple);
+}
+
+/* PRODUCTS */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+@media(min-width:750px){
+    .grid{
+        grid-template-columns:repeat(3,1fr);
+        gap:20px;
+    }
+}
+
+@media(min-width:1050px){
+    .grid{
+        grid-template-columns:repeat(4,1fr);
+    }
+}
+
+.card{
+    background:linear-gradient(180deg,#0d0f14,#090b0f);
+    border:1px solid var(--border);
+    border-radius:18px;
+    overflow:hidden;
+    transition:.25s;
+    position:relative;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    border-color:#8b5cf688;
+    box-shadow:0 15px 45px #000;
+}
+
+.image{
+    aspect-ratio:1/1;
+    background:#11141b;
+    position:relative;
+    overflow:hidden;
+}
+
+.image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.4s;
+}
+
+.card:hover .image img{
+    transform:scale(1.07);
+}
+
+.badge{
+    position:absolute;
+    z-index:2;
+    top:10px;
+    left:10px;
+    padding:5px 8px;
+    border-radius:6px;
+    background:white;
+    color:#050507;
+    font-size:8px;
+    font-weight:900;
+}
+
+.card-body{
+    padding:15px;
+}
+
+.category-name{
+    color:#9b7af7;
+    font-size:9px;
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:.6px;
+}
+
+.title{
+    margin-top:5px;
+    font-size:14px;
+    font-weight:800;
+    line-height:1.3;
+    min-height:37px;
+}
+
+.rating{
+    color:#facc15;
+    font-size:10px;
+    margin-top:9px;
+}
+
+.rating span{
+    color:#747b88;
+}
+
+.price{
+    margin-top:13px;
+    display:flex;
+    align-items:center;
+    gap:7px;
+}
+
+.price strong{
+    font-size:18px;
+}
+
+.old{
+    color:#666d79;
+    text-decoration:line-through;
+    font-size:10px;
+}
+
+.buy{
+    width:100%;
+    margin-top:13px;
+    padding:11px;
+    border-radius:10px;
+    background:#1a1e27;
+    color:white;
+    font-size:10px;
+    font-weight:900;
+    transition:.2s;
+}
+
+.buy:hover{
+    background:linear-gradient(135deg,var(--purple),var(--purple2));
+}
+
+/* TRUST */
+
+.trust{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+    margin:45px 0;
+}
+
+.trust-box{
+    padding:18px;
+    border:1px solid var(--border);
+    background:#0b0d12;
+    border-radius:14px;
+    text-align:center;
+}
+
+.trust-box strong{
+    display:block;
+    font-size:20px;
+}
+
+.trust-box span{
+    color:var(--muted);
+    font-size:10px;
+}
+
+/* MODAL */
+
+.overlay{
+    position:fixed;
+    inset:0;
+    z-index:1000;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:15px;
+    background:#000d;
+    backdrop-filter:blur(12px);
+}
+
+.overlay.active{
+    display:flex;
+}
+
+.modal{
+    width:min(470px,100%);
+    max-height:90vh;
+    overflow:auto;
+    background:#0d0f14;
+    border:1px solid #8b5cf688;
+    border-radius:20px;
+    box-shadow:0 30px 100px #000;
+}
+
+.modal-image{
+    width:100%;
+    aspect-ratio:16/10;
+    object-fit:cover;
+}
+
+.modal-content{
+    padding:22px;
+}
+
+.close{
+    position:absolute;
+    top:20px;
+    right:20px;
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    background:#000b;
+    color:white;
+    font-size:22px;
+    z-index:5;
+}
+
+.modal-category{
+    color:#a78bfa;
+    font-size:9px;
+    font-weight:900;
+}
+
+.modal h2{
+    font-size:22px;
+    margin:5px 0 10px;
+}
+
+.modal-description{
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.7;
+}
+
+.info{
+    margin:18px 0;
+    background:#07090c;
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:12px;
+}
+
+.info-row{
+    display:flex;
+    justify-content:space-between;
+    padding:8px 0;
+    border-bottom:1px solid #ffffff08;
+    font-size:11px;
+}
+
+.info-row:last-child{
+    border-bottom:0;
+}
+
+.info-row span{
+    color:#747c8b;
+}
+
+.info-row strong{
+    color:white;
+}
+
+.action{
+    display:block;
+    width:100%;
+    text-align:center;
+    padding:14px;
+    border-radius:11px;
+    background:linear-gradient(135deg,#8b5cf6,#6d28d9);
+    font-size:12px;
+    font-weight:900;
+}
+
+/* POPUP */
+
+.popup{
+    position:fixed;
+    z-index:900;
+    bottom:20px;
+    left:20px;
+    max-width:310px;
+    display:flex;
+    gap:10px;
+    align-items:center;
+    padding:11px;
+    border-radius:13px;
+    background:#101319f5;
+    border:1px solid #8b5cf655;
+    box-shadow:0 15px 50px #000;
+    transform:translateY(150px);
+    opacity:0;
+    transition:.4s;
+}
+
+.popup.show{
+    transform:translateY(0);
+    opacity:1;
+}
+
+.popup img{
+    width:42px;
+    height:42px;
+    object-fit:cover;
+    border-radius:8px;
+}
+
+.popup-text{
+    font-size:10px;
+    line-height:1.5;
+}
+
+.popup-text strong{
+    color:white;
+}
+
+.popup-time{
+    color:#22c55e;
+    font-weight:800;
+}
+
+/* FOOTER */
+
+footer{
+    margin-top:70px;
+    padding:30px 0;
+    border-top:1px solid var(--border);
+    text-align:center;
+    color:#626978;
+    font-size:10px;
+}
+
+footer strong{
+    color:white;
+    font-size:14px;
+    display:block;
+    margin-bottom:5px;
+}
+
+@media(max-width:600px){
+
+    .nav-links{
+        display:none;
+    }
+
+    .hero{
+        padding-top:45px;
+    }
+
+    .hero h1{
+        letter-spacing:-1.8px;
+    }
+
+    .trust{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+    ⚡ LIMITOVANÁ PONUKA
+    <span class="timer" id="timer">14:59</span>
+    • DIGITÁLNE SUPPLIER KONTAKTY
+</div>
+
+<nav>
+    <div class="container nav">
+
+        <a href="#" class="logo">
+            PLUG'S <span>PLACE</span>
+        </a>
+
+        <div class="nav-links">
+            <a href="#products">Produkty</a>
+            <a href="#how">Ako to funguje</a>
+        </div>
+
+        <a class="ig-btn"
+           href="https://ig.me/m/vendor.list_sk_cz"
+           target="_blank">
+            Instagram DM
+        </a>
+
+    </div>
+</nav>
+
+<main class="container">
+
+<section class="hero">
+
+    <div class="live">
+        <span class="dot"></span>
+        DIGITÁLNE PRODUKTY PRE RESELLEROV
+    </div>
+
+    <h1>
+        Nájdite svoj ďalší
+        <span>supplier kontakt.</span>
+    </h1>
+
+    <p>
+        Prezri si dostupné supplier produkty, pozri si základné informácie
+        a v prípade záujmu nás kontaktuj cez Instagram.
+    </p>
+
+</section>
+
+<div class="search-area">
+
+    <input
+        id="search"
+        class="search"
+        type="text"
+        placeholder="🔎 Hľadať napr. AirPods, iPhone, Polo..."
+    >
+
+</div>
+
+<div class="categories">
+
+    <button class="category active" data-cat="all">
+        🔥 Všetky
+    </button>
+
+    <button class="category" data-cat="tech">
+        📱 Tech
+    </button>
+
+    <button class="category" data-cat="shoes">
+        👟 Tenisky
+    </button>
+
+    <button class="category" data-cat="fashion">
+        👕 Fashion
+    </button>
+
+</div>
+
+<section id="products">
+
+    <div class="grid" id="grid"></div>
+
+</section>
+
+<div class="trust">
+
+    <div class="trust-box">
+        <strong>⚡</strong>
+        <span>Rýchla komunikácia</span>
+    </div>
+
+    <div class="trust-box">
+        <strong>📱</strong>
+        <span>Instagram objednávka</span>
+    </div>
+
+    <div class="trust-box">
+        <strong>🔎</strong>
+        <span>Detail produktu</span>
+    </div>
+
+    <div class="trust-box">
+        <strong>💻</strong>
+        <span>Digitálne doručenie</span>
+    </div>
+
+</div>
+
+<section id="how" style="padding:20px 0;text-align:center">
+
+    <h2 style="font-size:25px;font-weight:900">
+        Ako to funguje?
+    </h2>
+
+    <p style="color:#9299a8;font-size:12px;margin-top:10px">
+        1. Vyberieš produkt → 2. Pozrieš detaily →
+        3. Kontaktuješ nás cez Instagram → 4. Dostaneš informácie k objednávke.
+    </p>
+
+</section>
+
+</main>
+
+<!-- MODAL -->
+
+<div class="overlay" id="overlay">
+
+    <div class="modal">
+
+        <button class="close" onclick="closeModal()">×</button>
+
+        <img id="modalImage" class="modal-image">
+
+        <div class="modal-content">
+
+            <div id="modalCategory" class="modal-category">
+                TECH
+            </div>
+
+            <h2 id="modalTitle">
+                Produkt
+            </h2>
+
+            <p id="modalDescription" class="modal-description">
+            </p>
+
+            <div class="info">
+
+                <div class="info-row">
+                    <span>Supplier cena</span>
+                    <strong id="modalFactory">-</strong>
+                </div>
+
+                <div class="info-row">
+                    <span>Odporúčaná predajná cena</span>
+                    <strong id="modalResell">-</strong>
+                </div>
+
+                <div class="info-row">
+                    <span>Minimálna objednávka</span>
+                    <strong id="modalMoq">-</strong>
+                </div>
+
+                <div class="info-row">
+                    <span>Digitálny produkt</span>
+                    <strong>ÁNO</strong>
+                </div>
+
+            </div>
+
+            <a
+                id="modalInstagram"
+                class="action"
+                href="https://ig.me/m/vendor.list_sk_cz"
+                target="_blank">
+
+                CHCEM TENTO KONTAKT
+                • <span id="modalPrice">0 €</span>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- POPUP -->
+
+<div class="popup" id="popup">
+
+    <img id="popupImage">
+
+    <div class="popup-text">
+
+        <strong id="popupUser">
+            Niekto
+        </strong>
+
+        prejavil záujem o
+
+        <br>
+
+        <span id="popupProduct">
+            produkt
+        </span>
+
+        <div class="popup-time">
+            ● práve teraz
+        </div>
+
+    </div>
+
+</div>
+
+<footer>
+
+    <strong>PLUG'S PLACE</strong>
+
+    Digitálne supplier produkty pre resellerov.
+
+    <br><br>
+
+    © 2026 PLUG'S PLACE
+
+</footer>
+
+<script>
+
+/* PRODUCTS */
+
+const products = [
+
+{
+    id:1,
+    title:"AirPods Pro 2 Supplier",
+    category:"tech",
+    price:14.90,
+    oldPrice:29.90,
+    badge:"BESTSELLER",
+    image:"https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?auto=format&fit=crop&w=800&q=85",
+    description:"Supplier kontakt zameraný na bezdrôtové audio produkty. Pred nákupom si vždy over aktuálnu dostupnosť a vlastnosti produktu.",
+    factory:"Informácia po overení",
+    resell:"Podľa trhu",
+    moq:"1–2 ks"
+},
+
+{
+    id:2,
+    title:"iPhone Supplier",
+    category:"tech",
+    price:19.90,
+    oldPrice:39.90,
+    badge:"HOT",
+    image:"https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=85",
+    description:"Kontakt na dodávateľa v kategórii mobilných zariadení. Konkrétne modely a dostupnosť sa môžu meniť.",
+    factory:"Informácia po overení",
+    resell:"Podľa modelu",
+    moq:"1 ks"
+},
+
+{
+    id:3,
+    title:"Apple Watch Supplier",
+    category:"tech",
+    price:16.90,
+    oldPrice:34.90,
+    badge:"NEW",
+    image:"https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&w=800&q=85",
+    description:"Supplier kontakt pre kategóriu smart hodiniek a príslušenstva.",
+    factory:"Informácia po overení",
+    resell:"Podľa trhu",
+    moq:"1 ks"
+},
+
+{
+    id:4,
+    title:"Nike / Jordan Supplier",
+    category:"shoes",
+    price:17.90,
+    oldPrice:34.90,
+    badge:"POPULAR",
+    image:"https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=800&q=85",
+    description:"Supplier kontakt pre kategóriu tenisiek. Pred nákupom je potrebné overiť pravosť, pôvod a podmienky predaja konkrétneho modelu.",
+    factory:"Informácia po overení",
+    resell:"Podľa modelu",
+    moq:"1 pár"
+},
+
+{
+    id:5,
+    title:"Polo & Streetwear Supplier",
+    category:"fashion",
+    price:12.90,
+    oldPrice:27.90,
+    badge:"FASHION",
+    image:"https://images.unsplash.com/photo-1586363104862-3a5e2ab60d99?auto=format&fit=crop&w=800&q=85",
+    description:"Kontakt pre kategóriu polo tričiek, streetwear oblečenia a módnych doplnkov.",
+    factory:"Informácia po overení",
+    resell:"Podľa produktu",
+    moq:"Podľa dodávateľa"
+},
+
+{
+    id:6,
+    title:"Streetwear Hoodie Supplier",
+    category:"fashion",
+    price:14.90,
+    oldPrice:29.90,
+    badge:"TRENDING",
+    image:"https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=85",
+    description:"Supplier kontakt pre oversized mikiny a streetwear produkty.",
+    factory:"Informácia po overení",
+    resell:"Podľa trhu",
+    moq:"Podľa dodávateľa"
+}
+
+];
+
+
+/* RENDER */
+
+const grid = document.getElementById("grid");
+
+let activeCategory = "all";
+
+function render(){
+
+    const search =
+        document.getElementById("search")
+        .value
+        .toLowerCase();
+
+    const filtered = products.filter(p => {
+
+        const categoryMatch =
+            activeCategory === "all" ||
+            p.category === activeCategory;
+
+        const searchMatch =
+            p.title.toLowerCase().includes(search);
+
+        return categoryMatch && searchMatch;
+
+    });
+
+    grid.innerHTML = filtered.map(p => `
+
+        <article class="card">
+
+            <span class="badge">
+                ${p.badge}
+            </span>
+
+            <div class="image">
+
+                <img
+                    src="${p.image}"
+                    alt="${p.title}"
+                    loading="lazy"
+                >
+
+            </div>
+
+            <div class="card-body">
+
+                <div class="category-name">
+                    ${p.category}
+                </div>
+
+                <div class="title">
+                    ${p.title}
+                </div>
+
+                <div class="rating">
+                    ★ 4.9
+                    <span>• digitálny produkt</span>
+                </div>
+
+                <div class="price">
+
+                    <strong>
+                        ${p.price.toFixed(2)} €
+                    </strong>
+
+                    <span class="old">
+                        ${p.oldPrice.toFixed(2)} €
+                    </span>
+
+                </div>
+
+                <button
+                    class="buy"
+                    onclick="openModal(${p.id})">
+
+                    ZOBRAZIŤ DETAIL
+
+                </button>
+
+            </div>
+
+        </article>
+
+    `).join("");
+
+}
+
+
+/* CATEGORY FILTER */
+
+document.querySelectorAll(".category").forEach(button => {
+
+    button.addEventListener("click",() => {
+
+        document
+        .querySelectorAll(".category")
+        .forEach(b => b.classList.remove("active"));
+
+        button.classList.add("active");
+
+        activeCategory =
+            button.dataset.cat;
+
+        render();
+
+    });
+
+});
+
+
+/* SEARCH */
+
+document
+.getElementById("search")
+.addEventListener("input",render);
+
+
+/* MODAL */
+
+function openModal(id){
+
+    const product =
+        products.find(p => p.id === id);
+
+    if(!product) return;
+
+    document
+    .getElementById("modalImage")
+    .src = product.image;
+
+    document
+    .getElementById("modalCategory")
+    .textContent =
+        product.category.toUpperCase();
+
+    document
+    .getElementById("modalTitle")
+    .textContent =
+        product.title;
+
+    document
+    .getElementById("modalDescription")
+    .textContent =
+        product.description;
+
+    document
+    .getElementById("modalFactory")
+    .textContent =
+        product.factory;
+
+    document
+    .getElementById("modalResell")
+    .textContent =
+        product.resell;
+
+    document
+    .getElementById("modalMoq")
+    .textContent =
+        product.moq;
+
+    document
+    .getElementById("modalPrice")
+    .textContent =
+        product.price.toFixed(2) + " €";
+
+    document
+    .getElementById("overlay")
+    .classList.add("active");
+
+}
+
+function closeModal(){
+
+    document
+    .getElementById("overlay")
+    .classList.remove("active");
+
+}
+
+document
+.getElementById("overlay")
+.addEventListener("click",e=>{
+
+    if(e.target.id === "overlay"){
+        closeModal();
+    }
+
+});
+
+
+/* ESC */
+
+document.addEventListener("keydown",e=>{
+
+    if(e.key === "Escape"){
+        closeModal();
+    }
+
+});
+
+
+/* TIMER */
+
+let seconds = 899;
+
+setInterval(()=>{
+
+    const min =
+        Math.floor(seconds / 60);
+
+    const sec =
+        seconds % 60;
+
+    document
+    .getElementById("timer")
+    .textContent =
+        `${String(min).padStart(2,"0")}:${String(sec).padStart(2,"0")}`;
+
+    seconds--;
+
+    if(seconds < 0){
+        seconds = 899;
+    }
+
+},1000);
+
+
+/* ACTIVITY POPUP */
+
+const popup =
+    document.getElementById("popup");
+
+const popupUser =
+    document.getElementById("popupUser");
+
+const popupProduct =
+    document.getElementById("popupProduct");
+
+const popupImage =
+    document.getElementById("popupImage");
+
+const users = [
+    "Návštevník",
+    "Zákazník",
+    "Reseller",
+    "Návštevník stránky"
+];
+
+function showPopup(){
+
+    const product =
+        products[
+            Math.floor(
+                Math.random() * products.length
+            )
+        ];
+
+    popupUser.textContent =
+        users[
+            Math.floor(
+                Math.random() * users.length
+            )
+        ];
+
+    popupProduct.textContent =
+        product.title;
+
+    popupImage.src =
+        product.image;
+
+    popup.classList.add("show");
+
+    setTimeout(()=>{
+        popup.classList.remove("show");
+    },4500);
+
+}
+
+setTimeout(showPopup,5000);
+
+setInterval(showPopup,18000);
+
+
+/* INITIAL */
+
+render();
+
+</script>
+
+</body>
+</html>
