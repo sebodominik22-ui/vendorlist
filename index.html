@@ -3,630 +3,1818 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VendorList.sk | Overení Dodávatelia pre E-shopy 2026</title>
 
+    <title>VendorList.sk | Dodávatelia pre e-shopy</title>
+    <meta name="description" content="VendorList.sk – zoznamy dodávateľov pre elektroniku, módu a online predaj.">
+
+    <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        rel="stylesheet"
+    >
 
     <style>
-        @keyframes fadeInOut {
-            0% { opacity: 0; transform: translateY(20px); }
-            10% { opacity: 1; transform: translateY(0); }
-            90% { opacity: 1; transform: translateY(0); }
-            100% { opacity: 0; transform: translateY(20px); }
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% {
+                box-shadow: 0 0 0 rgba(99,102,241,0);
+            }
+            50% {
+                box-shadow: 0 0 35px rgba(99,102,241,.20);
+            }
+        }
+
+        @keyframes toastIn {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-up {
+            animation: fadeUp .8s ease forwards;
+        }
+
+        .glow-card {
+            animation: pulseGlow 4s ease-in-out infinite;
         }
 
         .toast-active {
-            animation: fadeInOut 5s ease-in-out forwards;
+            animation: toastIn .5s ease forwards;
+        }
+
+        .glass {
+            background: rgba(15, 23, 42, .65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #818cf8, #a78bfa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
     </style>
 </head>
 
-<body class="bg-[#0f172a] text-slate-100 font-sans antialiased selection:bg-indigo-500 selection:text-white">
+<body class="bg-[#0f172a] text-slate-100 font-sans antialiased">
 
-    <!-- TOP BAR -->
-    <div class="bg-gradient-to-r from-indigo-600 to-violet-600 text-white text-xs sm:text-sm py-2 text-center font-bold px-4 flex items-center justify-center gap-2 shadow-md">
-        <span>⚡ ÚVODNÁ CENA PRE ROK 2026 KONČÍ ZA:</span>
-        <span id="countdown" class="bg-black/30 px-2 py-0.5 rounded font-mono text-yellow-300">14:59</span>
-    </div>
+<!-- ========================================================= -->
+<!-- TOP BAR -->
+<!-- ========================================================= -->
 
-    <!-- NAVIGÁCIA -->
-    <nav class="bg-slate-900/80 backdrop-blur-md border-b border-slate-800 sticky top-0 z-40">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16 items-center">
+<div class="bg-gradient-to-r from-indigo-600 via-violet-600 to-indigo-600
+            text-white text-xs sm:text-sm py-2.5 text-center font-bold px-4
+            flex items-center justify-center gap-2 shadow-lg">
 
-                <div class="flex items-center gap-2">
-                    <div class="bg-indigo-600 p-2 rounded-xl text-white">
-                        <i class="fa-solid fa-boxes-packing text-lg"></i>
-                    </div>
+    <span>⚡ ŠPECIÁLNA PONUKA 2026</span>
 
-                    <span class="text-2xl font-black tracking-tight text-white">
-                        Vendor<span class="text-indigo-500">List</span>
-                    </span>
+    <span
+        id="countdown"
+        class="bg-black/30 px-2.5 py-1 rounded-lg font-mono text-yellow-300"
+    >
+        14:59
+    </span>
+
+</div>
+
+
+<!-- ========================================================= -->
+<!-- NAVBAR -->
+<!-- ========================================================= -->
+
+<nav class="sticky top-0 z-50 bg-slate-950/80 backdrop-blur-xl
+            border-b border-slate-800">
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="h-16 flex items-center justify-between">
+
+            <!-- LOGO -->
+
+            <a href="#" class="flex items-center gap-2">
+
+                <div class="bg-indigo-600 p-2.5 rounded-xl shadow-lg shadow-indigo-600/20">
+                    <i class="fa-solid fa-boxes-stacked text-white"></i>
                 </div>
 
-                <div class="hidden md:flex space-x-8 font-semibold text-slate-300 text-sm">
-                    <a href="#produkty" class="hover:text-indigo-400 transition">Zoznamy</a>
-                    <a href="#recenzie" class="hover:text-indigo-400 transition">Recenzie</a>
-                    <a href="#faq" class="hover:text-indigo-400 transition">FAQ</a>
-                </div>
-
-                <div>
-                    <a href="#produkty"
-                       class="bg-indigo-600 hover:bg-indigo-500 text-white text-sm px-5 py-2.5 rounded-xl font-bold transition duration-200 shadow-lg shadow-indigo-600/30">
-                        Získať Kontakty
-                    </a>
-                </div>
-
-            </div>
-        </div>
-    </nav>
-
-    <!-- HERO SEKCIA -->
-    <header class="relative overflow-hidden pt-12 pb-20 text-center px-4">
-
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] bg-indigo-600/20 blur-[100px] sm:blur-[120px] rounded-full pointer-events-none"></div>
-
-        <div class="max-w-4xl mx-auto relative z-10">
-
-            <div class="inline-flex items-center gap-2 bg-slate-800/80 border border-slate-700 px-4 py-1.5 rounded-full text-xs font-semibold text-indigo-400 mb-6 shadow-inner">
-                <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-                Databáza aktualizovaná pre rok 2026
-            </div>
-
-            <h1 class="text-3xl sm:text-6xl font-black text-white tracking-tight leading-tight">
-                Priame kontakty na <br class="hidden sm:inline"/>
-                <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-violet-400">
-                    overených dodávateľov
+                <span class="text-xl sm:text-2xl font-black">
+                    Vendor<span class="text-indigo-500">List</span>
                 </span>
-            </h1>
 
-            <p class="text-sm sm:text-lg text-slate-400 mt-5 max-w-2xl mx-auto font-normal leading-relaxed">
-                Už žiadne zbytočné sprostredkovateľské poplatky. Získaj priamy prístup k overeným fabrikám, EU skladom a dropshipping partnerom s maržami až 400 %.
-            </p>
+            </a>
 
-            <div class="mt-8 flex flex-col sm:flex-row justify-center gap-4">
 
-                <a href="#produkty"
-                   class="bg-indigo-600 hover:bg-indigo-500 text-white px-8 py-4 rounded-xl font-bold text-base sm:text-lg transition duration-200 shadow-xl shadow-indigo-600/25 flex items-center justify-center gap-2">
-                    <span>Zobraziť zoznamy</span>
-                    <i class="fa-solid fa-arrow-right"></i>
+            <!-- DESKTOP MENU -->
+
+            <div class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-300">
+
+                <a href="#produkty" class="hover:text-indigo-400 transition">
+                    Zoznamy
+                </a>
+
+                <a href="#ako-to-funguje" class="hover:text-indigo-400 transition">
+                    Ako to funguje
+                </a>
+
+                <a href="#recenzie" class="hover:text-indigo-400 transition">
+                    Recenzie
+                </a>
+
+                <a href="#faq" class="hover:text-indigo-400 transition">
+                    FAQ
                 </a>
 
             </div>
 
-            <!-- ŠTATISTIKY -->
-            <div class="mt-12 pt-8 border-t border-slate-800/80 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
 
-                <div class="p-2">
-                    <div class="text-2xl sm:text-3xl font-extrabold text-white">1,450+</div>
-                    <div class="text-xs text-slate-500 font-medium mt-1">Stiahnutých listov</div>
-                </div>
+            <!-- DESKTOP CTA -->
 
-                <div class="p-2">
-                    <div class="text-2xl sm:text-3xl font-extrabold text-white">100%</div>
-                    <div class="text-xs text-slate-500 font-medium mt-1">Overené kontakty</div>
-                </div>
+            <a
+                href="#produkty"
+                class="hidden md:inline-flex bg-indigo-600 hover:bg-indigo-500
+                       px-5 py-2.5 rounded-xl font-bold text-sm
+                       transition shadow-lg shadow-indigo-600/20"
+            >
+                Získať zoznam
+            </a>
 
-                <div class="p-2">
-                    <div class="text-2xl sm:text-3xl font-extrabold text-white">EU Sklady</div>
-                    <div class="text-xs text-slate-500 font-medium mt-1">Doručenie 2-4 dni</div>
-                </div>
 
-                <div class="p-2">
-                    <div class="text-2xl sm:text-3xl font-extrabold text-indigo-400">Okamžite</div>
-                    <div class="text-xs text-slate-500 font-medium mt-1">PDF do emailu</div>
-                </div>
+            <!-- MOBILE BUTTON -->
 
-            </div>
+            <button
+                id="menuButton"
+                class="md:hidden w-10 h-10 rounded-xl bg-slate-800
+                       border border-slate-700"
+            >
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
         </div>
-    </header>
 
-    <!-- PRODUKTY -->
-    <section id="produkty" class="py-16 bg-slate-900 border-y border-slate-800">
 
-        <div class="max-w-7xl mx-auto px-4">
+        <!-- MOBILE MENU -->
 
-            <div class="text-center mb-12">
-                <h2 class="text-2xl sm:text-4xl font-black text-white">
-                    Vyber si svoju kategóriu
-                </h2>
+        <div id="mobileMenu" class="hidden md:hidden pb-5">
 
-                <p class="text-slate-400 text-sm mt-2">
-                    Kontaktuj nás cez Instagram a získaj zoznam.
-                </p>
-            </div>
+            <div class="flex flex-col gap-2 pt-3">
 
-            <div class="grid md:grid-cols-3 gap-8">
+                <a href="#produkty"
+                   class="p-3 rounded-xl hover:bg-slate-800">
+                    Zoznamy
+                </a>
 
-                <!-- PRODUKT 1 -->
-                <div class="bg-slate-800/60 border border-slate-700/70 rounded-3xl p-6 sm:p-8 flex flex-col justify-between hover:border-indigo-500 transition duration-300 relative group">
+                <a href="#ako-to-funguje"
+                   class="p-3 rounded-xl hover:bg-slate-800">
+                    Ako to funguje
+                </a>
 
-                    <div class="absolute -top-3 right-6 bg-indigo-600 text-white text-[10px] font-black uppercase px-3 py-1 rounded-full tracking-wider shadow-md">
-                        Bestseller 2026
-                    </div>
+                <a href="#recenzie"
+                   class="p-3 rounded-xl hover:bg-slate-800">
+                    Recenzie
+                </a>
 
-                    <div>
-
-                        <div class="w-12 h-12 rounded-2xl bg-indigo-600/20 text-indigo-400 flex items-center justify-center text-xl mb-6">
-                            <i class="fa-solid fa-headphones"></i>
-                        </div>
-
-                        <h3 class="text-2xl font-bold text-white">
-                            Tech & Elektronika
-                        </h3>
-
-                        <p class="text-slate-400 text-sm mt-2 leading-relaxed">
-                            Bluetooth reproduktory, powerbanky, bezdrôtové slúchadlá a smart gadgety.
-                        </p>
-
-                        <div class="my-6 border-t border-slate-700/50"></div>
-
-                        <ul class="space-y-3 text-sm text-slate-300">
-
-                            <li class="flex items-center gap-2">
-                                <i class="fa-solid fa-check text-green-400"></i>
-                                14 priamych dodávateľov
-                            </li>
-
-                            <li class="flex items-center gap-2">
-                                <i class="fa-solid fa-check text-green-400"></i>
-                                Kontakty na WhatsApp & WeChat
-                            </li>
-
-                            <li class="flex items-center gap-2">
-                                <i class="fa-solid fa-check text-green-400"></i>
-                                CE & RoHS certifikáty
-                            </li>
-
-                            <li class="flex items-center gap-2">
-                                <i class="fa-solid fa-check text-green-400"></i>
-                                Nízke MOQ (od 1 kusu)
-                            </li>
-
-                        </ul>
-
-                    </div>
-
-                    <div class="mt-8 pt-6 border-t border-slate-700/50">
-
-                        <div class="flex items-baseline justify-between mb-4">
-                            <span class="text-3xl font-black text-white">9,90 €</span>
-                            <span class="text-sm text-green-400 font-bold">Úvodná cena</span>
-                        </div>
-
-                        <!-- INSTAGRAM - TECH -->
-                        <a href="https://ig.me/m/vendor.list_sk_cz"
-                           target="_blank"
-                           class="w-full block text-center bg-indigo-600 hover:bg-indigo-500 text-white py-3.5 rounded-xl font-bold transition shadow-lg shadow-indigo-600/20">
-                            Kúpiť cez správu
-                        </a>
-
-                    </div>
-                </div>
-
-                <!-- PRODUKT 2 -->
-                <div class="bg-slate-800/60 border border-slate-700/70 rounded-3xl p-6 sm:p-8 flex flex-col justify-between hover:border-indigo-500 transition duration-300 relative group">
-
-                    <div>
-
-                        <div class="w-12 h-12 rounded-2xl bg-violet-600/20 text-violet-400 flex items-center justify-center text-xl mb-6">
-                            <i class="fa-solid fa-shirt"></i>
-                        </div>
-
-                        <h3 class="text-2xl font-bold text-white">
-                            Móda & Streetwear
-                        </h3>
-
-                        <p class="text-slate-400 text-sm mt-2 leading-relaxed">
-                            Heavyweight mikiny, oversized tričká, šiltovky a doplnky pripravené na vlastný brand.
-                        </p>
-
-                        <div class="my-6 border-t border-slate-700/50"></div>
-
-                        <ul class="space-y-3 text-sm text-slate-300">
-
-                            <li class="flex items-center gap-2">
-                                <i class="fa-solid fa-check text-green-400"></i>
-                                18 overených textiliek
-                            </li>
-
-                            <li class="flex items-center gap-2">
-                                <i class="fa-solid fa-check text-green-400"></i>
-                                Výroba vlastných visačiek
-                            </li>
-
-                            <li class="flex items-center gap-2">
-                                <i class="fa-solid fa-check text-green-400"></i>
-                                Tureckí a Portugalskí výrobcovia
-                            </li>
-
-                            <li class="flex items-center gap-2">
-                                <i class="fa-solid fa-check text-green-400"></i>
-                                Žiadne clo pre SK/CZ
-                            </li>
-
-                        </ul>
-
-                    </div>
-
-                    <div class="mt-8 pt-6 border-t border-slate-700/50">
-
-                        <div class="flex items-baseline justify-between mb-4">
-                            <span class="text-3xl font-black text-white">7,90 €</span>
-                            <span class="text-sm text-green-400 font-bold">Úvodná cena</span>
-                        </div>
-
-                        <!-- INSTAGRAM - MÓDA -->
-                        <a href="https://ig.me/m/vendor.list_sk_cz"
-                           target="_blank"
-                           class="w-full block text-center bg-indigo-600 hover:bg-indigo-500 text-white py-3.5 rounded-xl font-bold transition shadow-lg shadow-indigo-600/20">
-                            Kúpiť cez správu
-                        </a>
-
-                    </div>
-                </div>
-
-                <!-- PRODUKT 3 -->
-                <div class="bg-gradient-to-b from-indigo-900/40 to-slate-800/90 border-2 border-indigo-500 rounded-3xl p-6 sm:p-8 flex flex-col justify-between shadow-2xl relative">
-
-                    <div class="absolute -top-3 right-6 bg-gradient-to-r from-yellow-400 to-amber-500 text-slate-950 text-[10px] font-black uppercase px-3 py-1 rounded-full tracking-wider shadow-md">
-                        Balík Všetko v Jednom
-                    </div>
-
-                    <div>
-
-                        <div class="w-12 h-12 rounded-2xl bg-yellow-400/20 text-yellow-400 flex items-center justify-center text-xl mb-6">
-                            <i class="fa-solid fa-crown"></i>
-                        </div>
-
-                        <h3 class="text-2xl font-bold text-white">
-                            Megapack 2026
-                        </h3>
-
-                        <p class="text-indigo-200 text-sm mt-2 leading-relaxed">
-                            Kompletný archív: Tech + Móda + E-book Vyjednávanie cien a Sprievodca DDP dopravou bez cla.
-                        </p>
-
-                        <div class="my-6 border-t border-slate-700/50"></div>
-
-                        <ul class="space-y-3 text-sm text-slate-200">
-
-                            <li class="flex items-center gap-2">
-                                <i class="fa-solid fa-star text-yellow-400"></i>
-                                Všetkých 60+ kontaktov
-                            </li>
-
-                            <li class="flex items-center gap-2">
-                                <i class="fa-solid fa-star text-yellow-400"></i>
-                                Šablóny správ na zľavy
-                            </li>
-
-                            <li class="flex items-center gap-2">
-                                <i class="fa-solid fa-star text-yellow-400"></i>
-                                Kompletný DDP návod bez cla
-                            </li>
-
-                            <li class="flex items-center gap-2">
-                                <i class="fa-solid fa-star text-yellow-400"></i>
-                                Doživotné aktualizácie na rok 2026
-                            </li>
-
-                        </ul>
-
-                    </div>
-
-                    <div class="mt-8 pt-6 border-t border-slate-700/50">
-
-                        <div class="flex items-baseline justify-between mb-4">
-                            <span class="text-3xl font-black text-white">14,90 €</span>
-                            <span class="text-sm text-green-400 font-bold">Úvodná cena</span>
-                        </div>
-
-                        <!-- INSTAGRAM - MEGAPACK -->
-                        <a href="https://ig.me/m/vendor.list_sk_cz"
-                           target="_blank"
-                           class="w-full block text-center bg-gradient-to-r from-indigo-500 to-violet-500 hover:from-indigo-600 hover:to-violet-600 text-white py-3.5 rounded-xl font-bold transition shadow-lg shadow-indigo-500/30">
-                            Kúpiť cez správu
-                        </a>
-
-                    </div>
-                </div>
+                <a href="#faq"
+                   class="p-3 rounded-xl hover:bg-slate-800">
+                    FAQ
+                </a>
 
             </div>
+
         </div>
-    </section>
 
-    <!-- RECENZIE -->
-    <section id="recenzie" class="py-16 max-w-6xl mx-auto px-4">
+    </div>
+</nav>
 
-        <div class="text-center mb-10">
 
-            <h2 class="text-2xl sm:text-3xl font-black text-white">
-                Hodnotenia zákazníkov
+<!-- ========================================================= -->
+<!-- HERO -->
+<!-- ========================================================= -->
+
+<header class="relative overflow-hidden">
+
+    <!-- Background glow -->
+
+    <div class="absolute top-10 left-1/2 -translate-x-1/2
+                w-[300px] sm:w-[600px]
+                h-[300px] sm:h-[600px]
+                bg-indigo-600/20
+                blur-[110px]
+                rounded-full
+                pointer-events-none">
+    </div>
+
+
+    <div class="relative max-w-5xl mx-auto px-4 pt-16 pb-20
+                text-center">
+
+        <!-- Badge -->
+
+        <div class="inline-flex items-center gap-2
+                    bg-slate-800/70 border border-slate-700
+                    px-4 py-2 rounded-full
+                    text-xs font-bold text-indigo-400 mb-7">
+
+            <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+
+            Databáza aktualizovaná pre rok 2026
+
+        </div>
+
+
+        <!-- Heading -->
+
+        <h1 class="text-4xl sm:text-6xl lg:text-7xl
+                   font-black tracking-tight leading-tight">
+
+            Priame kontakty na
+
+            <br>
+
+            <span class="gradient-text">
+                dodávateľov pre e-shopy
+            </span>
+
+        </h1>
+
+
+        <!-- Description -->
+
+        <p class="max-w-2xl mx-auto mt-6
+                  text-slate-400 text-sm sm:text-lg
+                  leading-relaxed">
+
+            Objav dodávateľov elektroniky, módy a ďalších produktov
+            na jednom mieste. Menej hľadania, viac času na predaj.
+
+        </p>
+
+
+        <!-- CTA -->
+
+        <div class="mt-9 flex flex-col sm:flex-row
+                    justify-center gap-3">
+
+            <a
+                href="#produkty"
+                class="bg-indigo-600 hover:bg-indigo-500
+                       px-8 py-4 rounded-xl
+                       font-bold text-base
+                       shadow-xl shadow-indigo-600/25
+                       transition flex items-center
+                       justify-center gap-2"
+            >
+
+                Zobraziť zoznamy
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </a>
+
+
+            <a
+                href="https://ig.me/m/vendor.list_sk_cz"
+                target="_blank"
+                class="bg-slate-800 hover:bg-slate-700
+                       border border-slate-700
+                       px-8 py-4 rounded-xl
+                       font-bold text-base
+                       transition flex items-center
+                       justify-center gap-2"
+            >
+
+                <i class="fa-brands fa-instagram"></i>
+
+                Napísať na Instagram
+
+            </a>
+
+        </div>
+
+
+        <!-- STATS -->
+
+        <div class="mt-14 pt-8 border-t border-slate-800
+                    grid grid-cols-2 md:grid-cols-4 gap-6">
+
+            <div>
+                <div class="text-2xl sm:text-3xl font-black">
+                    2026
+                </div>
+
+                <div class="text-xs text-slate-500 mt-1">
+                    Aktuálna databáza
+                </div>
+            </div>
+
+
+            <div>
+                <div class="text-2xl sm:text-3xl font-black">
+                    100%
+                </div>
+
+                <div class="text-xs text-slate-500 mt-1">
+                    Digitálny obsah
+                </div>
+            </div>
+
+
+            <div>
+                <div class="text-2xl sm:text-3xl font-black">
+                    EU
+                </div>
+
+                <div class="text-xs text-slate-500 mt-1">
+                    Dodávatelia / sklady
+                </div>
+            </div>
+
+
+            <div>
+                <div class="text-2xl sm:text-3xl font-black text-indigo-400">
+                    IHNEĎ
+                </div>
+
+                <div class="text-xs text-slate-500 mt-1">
+                    Kontakt cez Instagram
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- ========================================================= -->
+<!-- PRECO VENDORLIST -->
+<!-- ========================================================= -->
+
+<section class="py-20 border-y border-slate-800">
+
+    <div class="max-w-6xl mx-auto px-4">
+
+        <div class="text-center mb-12">
+
+            <span class="text-indigo-400 text-xs font-bold uppercase tracking-widest">
+                PREČO VENDORLIST?
+            </span>
+
+            <h2 class="text-3xl sm:text-4xl font-black mt-2">
+                Menej hľadania. Viac možností.
             </h2>
 
-            <div class="flex justify-center items-center gap-1 text-yellow-400 mt-2">
+        </div>
 
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
 
-                <span class="text-slate-300 text-xs sm:text-sm ml-2 font-bold">
-                    4.9/5 (190+ predajov)
-                </span>
+        <div class="grid md:grid-cols-4 gap-5">
+
+            <!-- CARD -->
+
+            <div class="glass border border-slate-800
+                        rounded-3xl p-6 hover:border-indigo-500
+                        transition">
+
+                <div class="w-12 h-12 rounded-2xl
+                            bg-indigo-500/10 text-indigo-400
+                            flex items-center justify-center mb-5">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                </div>
+
+                <h3 class="font-bold text-lg">
+                    Prehľad
+                </h3>
+
+                <p class="text-slate-400 text-sm mt-2 leading-relaxed">
+                    Kontakty a informácie usporiadané na jednom mieste.
+                </p>
 
             </div>
+
+
+            <div class="glass border border-slate-800
+                        rounded-3xl p-6 hover:border-indigo-500
+                        transition">
+
+                <div class="w-12 h-12 rounded-2xl
+                            bg-violet-500/10 text-violet-400
+                            flex items-center justify-center mb-5">
+
+                    <i class="fa-solid fa-bolt"></i>
+
+                </div>
+
+                <h3 class="font-bold text-lg">
+                    Rýchly prístup
+                </h3>
+
+                <p class="text-slate-400 text-sm mt-2 leading-relaxed">
+                    Digitálny obsah bez zbytočného čakania.
+                </p>
+
+            </div>
+
+
+            <div class="glass border border-slate-800
+                        rounded-3xl p-6 hover:border-indigo-500
+                        transition">
+
+                <div class="w-12 h-12 rounded-2xl
+                            bg-green-500/10 text-green-400
+                            flex items-center justify-center mb-5">
+
+                    <i class="fa-solid fa-comments"></i>
+
+                </div>
+
+                <h3 class="font-bold text-lg">
+                    Priama komunikácia
+                </h3>
+
+                <p class="text-slate-400 text-sm mt-2 leading-relaxed">
+                    Objednávky riešime priamo cez Instagram.
+                </p>
+
+            </div>
+
+
+            <div class="glass border border-slate-800
+                        rounded-3xl p-6 hover:border-indigo-500
+                        transition">
+
+                <div class="w-12 h-12 rounded-2xl
+                            bg-yellow-500/10 text-yellow-400
+                            flex items-center justify-center mb-5">
+
+                    <i class="fa-solid fa-box"></i>
+
+                </div>
+
+                <h3 class="font-bold text-lg">
+                    Viac kategórií
+                </h3>
+
+                <p class="text-slate-400 text-sm mt-2 leading-relaxed">
+                    Elektronika, móda a ďalšie možnosti.
+                </p>
+
+            </div>
+
         </div>
+
+    </div>
+
+</section>
+
+
+<!-- ========================================================= -->
+<!-- AKO TO FUNGUJE -->
+<!-- ========================================================= -->
+
+<section id="ako-to-funguje" class="py-20 bg-slate-900">
+
+    <div class="max-w-6xl mx-auto px-4">
+
+        <div class="text-center mb-12">
+
+            <span class="text-indigo-400 text-xs font-bold uppercase tracking-widest">
+                JEDNODUCHÝ PROCES
+            </span>
+
+            <h2 class="text-3xl sm:text-4xl font-black mt-2">
+                Ako to funguje?
+            </h2>
+
+        </div>
+
 
         <div class="grid md:grid-cols-3 gap-6">
 
-            <div class="bg-slate-800/40 border border-slate-800 p-6 rounded-2xl">
+            <div class="relative bg-slate-800/50 border border-slate-700
+                        rounded-3xl p-7">
 
-                <div class="flex items-center gap-1 text-yellow-400 text-sm mb-3">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                </div>
+                <span class="text-5xl font-black text-indigo-500/20">
+                    01
+                </span>
 
-                <p class="text-slate-300 text-sm italic">
-                    "Kúpil som elektroniku. Dodávateľ z Poľska odpísal na WhatsApp za pol hodiny. Vzorka repráku došla za 3 dni, zvuk perfektný."
+                <h3 class="text-xl font-bold mt-4">
+                    Vyber si zoznam
+                </h3>
+
+                <p class="text-slate-400 text-sm mt-2">
+                    Vyber kategóriu, ktorá ťa zaujíma.
                 </p>
 
-                <div class="mt-4 flex items-center gap-3">
-
-                    <div class="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center font-bold text-xs">
-                        PK
-                    </div>
-
-                    <div>
-                        <div class="text-xs font-bold text-white">
-                            Patrik K.
-                        </div>
-
-                        <div class="text-[10px] text-green-400">
-                            Overený nákup
-                        </div>
-                    </div>
-
-                </div>
             </div>
 
-            <div class="bg-slate-800/40 border border-slate-800 p-6 rounded-2xl">
 
-                <div class="flex items-center gap-1 text-yellow-400 text-sm mb-3">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                </div>
+            <div class="relative bg-slate-800/50 border border-slate-700
+                        rounded-3xl p-7">
 
-                <p class="text-slate-300 text-sm italic">
-                    "Portugalský dodávateľ na streetwear je zlatá baňa. 400g mikiny bez potlače za tie ceny na SK vôbec nezoženiete."
+                <span class="text-5xl font-black text-indigo-500/20">
+                    02
+                </span>
+
+                <h3 class="text-xl font-bold mt-4">
+                    Napíš nám
+                </h3>
+
+                <p class="text-slate-400 text-sm mt-2">
+                    Klikni na tlačidlo a kontaktuj
+                    @vendor.list_sk_cz.
                 </p>
 
-                <div class="mt-4 flex items-center gap-3">
-
-                    <div class="w-8 h-8 rounded-full bg-violet-600 flex items-center justify-center font-bold text-xs">
-                        TB
-                    </div>
-
-                    <div>
-                        <div class="text-xs font-bold text-white">
-                            Tomáš B.
-                        </div>
-
-                        <div class="text-[10px] text-green-400">
-                            Overený nákup
-                        </div>
-                    </div>
-
-                </div>
             </div>
 
-            <div class="bg-slate-800/40 border border-slate-800 p-6 rounded-2xl">
 
-                <div class="flex items-center gap-1 text-yellow-400 text-sm mb-3">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                </div>
+            <div class="relative bg-slate-800/50 border border-slate-700
+                        rounded-3xl p-7">
 
-                <p class="text-slate-300 text-sm italic">
-                    "Šablóna na vyjednávanie zľavy fungovala hneď pri prvej správe. Ušetril som 120 € na objednávke. Odporúčam Megapack."
+                <span class="text-5xl font-black text-indigo-500/20">
+                    03
+                </span>
+
+                <h3 class="text-xl font-bold mt-4">
+                    Dostaneš ďalší postup
+                </h3>
+
+                <p class="text-slate-400 text-sm mt-2">
+                    Po správe ti vysvetlíme objednávku
+                    a ďalší postup.
                 </p>
 
-                <div class="mt-4 flex items-center gap-3">
-
-                    <div class="w-8 h-8 rounded-full bg-emerald-600 flex items-center justify-center font-bold text-xs">
-                        MN
-                    </div>
-
-                    <div>
-                        <div class="text-xs font-bold text-white">
-                            Michal N.
-                        </div>
-
-                        <div class="text-[10px] text-green-400">
-                            Overený nákup
-                        </div>
-                    </div>
-
-                </div>
             </div>
 
         </div>
-    </section>
 
-    <!-- FAQ -->
-    <section id="faq" class="py-14 bg-slate-900 border-t border-slate-800">
+    </div>
 
-        <div class="max-w-3xl mx-auto px-4">
+</section>
 
-            <h2 class="text-2xl sm:text-3xl font-black text-center text-white mb-8">
+
+<!-- ========================================================= -->
+<!-- PRODUCTS -->
+<!-- ========================================================= -->
+
+<section id="produkty" class="py-20">
+
+    <div class="max-w-7xl mx-auto px-4">
+
+        <div class="text-center mb-12">
+
+            <span class="text-indigo-400 text-xs font-bold uppercase tracking-widest">
+                PONUKA
+            </span>
+
+            <h2 class="text-3xl sm:text-5xl font-black mt-2">
+                Vyber si svoj zoznam
+            </h2>
+
+            <p class="text-slate-400 mt-3 text-sm">
+                Kontaktuj nás cez Instagram a získaj ďalšie informácie.
+            </p>
+
+        </div>
+
+
+        <div class="grid md:grid-cols-3 gap-7">
+
+
+            <!-- TECH -->
+
+            <div class="bg-slate-800/60 border border-slate-700
+                        rounded-3xl p-7 flex flex-col
+                        hover:border-indigo-500 transition">
+
+                <div class="flex items-center justify-between">
+
+                    <div class="w-12 h-12 rounded-2xl
+                                bg-indigo-500/10 text-indigo-400
+                                flex items-center justify-center">
+
+                        <i class="fa-solid fa-headphones"></i>
+
+                    </div>
+
+                    <span class="bg-indigo-600 px-3 py-1
+                                 rounded-full text-[10px]
+                                 font-black uppercase">
+                        Bestseller
+                    </span>
+
+                </div>
+
+
+                <h3 class="text-2xl font-black mt-6">
+                    Tech & Elektronika
+                </h3>
+
+                <p class="text-slate-400 text-sm mt-2 leading-relaxed">
+                    Bluetooth reproduktory, powerbanky,
+                    bezdrôtové slúchadlá a smart gadgety.
+                </p>
+
+
+                <div class="border-t border-slate-700 my-6"></div>
+
+
+                <ul class="space-y-3 text-sm text-slate-300 flex-1">
+
+                    <li>
+                        <i class="fa-solid fa-check text-green-400 mr-2"></i>
+                        14 kontaktov dodávateľov
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-check text-green-400 mr-2"></i>
+                        WhatsApp & WeChat
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-check text-green-400 mr-2"></i>
+                        Informácie o produktoch
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-check text-green-400 mr-2"></i>
+                        Nízke MOQ
+                    </li>
+
+                </ul>
+
+
+                <div class="border-t border-slate-700 mt-7 pt-6">
+
+                    <div class="flex items-end justify-between mb-4">
+
+                        <div>
+                            <div class="text-3xl font-black">
+                                9,90 €
+                            </div>
+
+                            <div class="text-xs text-slate-500 line-through">
+                                24,90 €
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <a
+                        href="https://ig.me/m/vendor.list_sk_cz"
+                        target="_blank"
+                        class="block w-full text-center
+                               bg-indigo-600 hover:bg-indigo-500
+                               py-3.5 rounded-xl font-bold
+                               transition"
+                    >
+                        Kúpiť cez správu
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- MODA -->
+
+            <div class="bg-slate-800/60 border border-slate-700
+                        rounded-3xl p-7 flex flex-col
+                        hover:border-violet-500 transition">
+
+                <div class="w-12 h-12 rounded-2xl
+                            bg-violet-500/10 text-violet-400
+                            flex items-center justify-center">
+
+                    <i class="fa-solid fa-shirt"></i>
+
+                </div>
+
+
+                <h3 class="text-2xl font-black mt-6">
+                    Móda & Streetwear
+                </h3>
+
+                <p class="text-slate-400 text-sm mt-2 leading-relaxed">
+                    Heavyweight mikiny, oversized tričká,
+                    šiltovky a doplnky.
+                </p>
+
+
+                <div class="border-t border-slate-700 my-6"></div>
+
+
+                <ul class="space-y-3 text-sm text-slate-300 flex-1">
+
+                    <li>
+                        <i class="fa-solid fa-check text-green-400 mr-2"></i>
+                        18 kontaktov dodávateľov
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-check text-green-400 mr-2"></i>
+                        Výroba vlastných visačiek
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-check text-green-400 mr-2"></i>
+                        Turecko a Portugalsko
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-check text-green-400 mr-2"></i>
+                        Informácie o MOQ
+                    </li>
+
+                </ul>
+
+
+                <div class="border-t border-slate-700 mt-7 pt-6">
+
+                    <div class="mb-4">
+
+                        <div class="text-3xl font-black">
+                            7,90 €
+                        </div>
+
+                        <div class="text-xs text-slate-500 line-through">
+                            19,90 €
+                        </div>
+
+                    </div>
+
+
+                    <a
+                        href="https://ig.me/m/vendor.list_sk_cz"
+                        target="_blank"
+                        class="block w-full text-center
+                               bg-indigo-600 hover:bg-indigo-500
+                               py-3.5 rounded-xl font-bold
+                               transition"
+                    >
+                        Kúpiť cez správu
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- MEGAPACK -->
+
+            <div class="relative bg-gradient-to-b
+                        from-indigo-900/50 to-slate-800
+                        border-2 border-indigo-500
+                        rounded-3xl p-7 flex flex-col
+                        glow-card">
+
+                <div class="absolute -top-3 right-6
+                            bg-gradient-to-r from-yellow-400
+                            to-amber-500
+                            text-slate-950
+                            px-3 py-1 rounded-full
+                            text-[10px] font-black uppercase">
+
+                    Najlepšia hodnota
+
+                </div>
+
+
+                <div class="w-12 h-12 rounded-2xl
+                            bg-yellow-400/10 text-yellow-400
+                            flex items-center justify-center">
+
+                    <i class="fa-solid fa-crown"></i>
+
+                </div>
+
+
+                <h3 class="text-2xl font-black mt-6">
+                    Megapack 2026
+                </h3>
+
+                <p class="text-indigo-200 text-sm mt-2 leading-relaxed">
+                    Kompletný balík Tech + Móda + bonusové materiály.
+                </p>
+
+
+                <div class="border-t border-indigo-500/30 my-6"></div>
+
+
+                <ul class="space-y-3 text-sm text-slate-200 flex-1">
+
+                    <li>
+                        <i class="fa-solid fa-star text-yellow-400 mr-2"></i>
+                        60+ kontaktov
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-star text-yellow-400 mr-2"></i>
+                        Šablóny správ
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-star text-yellow-400 mr-2"></i>
+                        Sprievodca dodávateľmi
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-star text-yellow-400 mr-2"></i>
+                        Bonusové materiály
+                    </li>
+
+                </ul>
+
+
+                <div class="border-t border-indigo-500/30 mt-7 pt-6">
+
+                    <div class="mb-4">
+
+                        <div class="text-3xl font-black">
+                            14,90 €
+                        </div>
+
+                        <div class="text-xs text-slate-400 line-through">
+                            39,90 €
+                        </div>
+
+                    </div>
+
+
+                    <a
+                        href="https://ig.me/m/vendor.list_sk_cz"
+                        target="_blank"
+                        class="block w-full text-center
+                               bg-gradient-to-r
+                               from-indigo-500 to-violet-500
+                               hover:from-indigo-600
+                               hover:to-violet-600
+                               py-3.5 rounded-xl font-bold
+                               transition shadow-lg"
+                    >
+                        Kúpiť cez správu
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ========================================================= -->
+<!-- MARZA -->
+<!-- ========================================================= -->
+
+<section class="py-16 bg-slate-900">
+
+    <div class="max-w-5xl mx-auto px-4">
+
+        <div class="bg-gradient-to-r
+                    from-indigo-600/20
+                    to-violet-600/20
+                    border border-indigo-500/30
+                    rounded-3xl p-8 sm:p-10
+                    text-center">
+
+            <div class="text-4xl mb-4">
+                💰
+            </div>
+
+            <h2 class="text-2xl sm:text-3xl font-black">
+                Potenciál pre vyššiu maržu
+            </h2>
+
+            <p class="text-slate-300 text-sm sm:text-base
+                      max-w-2xl mx-auto mt-3 leading-relaxed">
+
+                Pri správnom výbere produktu a dodávateľa
+                môže byť priestor na maržu až
+
+                <span class="text-indigo-400 font-black">
+                    100 %
+                </span>.
+
+            </p>
+
+            <p class="text-slate-500 text-xs max-w-xl mx-auto mt-3">
+                Výsledná marža závisí od nákupnej ceny,
+                predajnej ceny, dopravy, poplatkov a ďalších nákladov.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ========================================================= -->
+<!-- COMPARISON -->
+<!-- ========================================================= -->
+
+<section class="py-20">
+
+    <div class="max-w-5xl mx-auto px-4">
+
+        <div class="text-center mb-10">
+
+            <h2 class="text-3xl sm:text-4xl font-black">
+                Porovnaj balíky
+            </h2>
+
+        </div>
+
+
+        <div class="overflow-x-auto rounded-3xl border border-slate-800">
+
+            <table class="w-full text-sm">
+
+                <thead class="bg-slate-900">
+
+                    <tr>
+
+                        <th class="text-left p-5">
+                            Funkcia
+                        </th>
+
+                        <th class="p-5">
+                            Tech
+                        </th>
+
+                        <th class="p-5">
+                            Móda
+                        </th>
+
+                        <th class="p-5 text-indigo-400">
+                            Megapack
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody class="divide-y divide-slate-800">
+
+                    <tr>
+                        <td class="p-5 text-slate-400">
+                            Kontakty
+                        </td>
+
+                        <td class="text-center">
+                            ✓
+                        </td>
+
+                        <td class="text-center">
+                            ✓
+                        </td>
+
+                        <td class="text-center text-green-400">
+                            ✓
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td class="p-5 text-slate-400">
+                            MOQ informácie
+                        </td>
+
+                        <td class="text-center">
+                            ✓
+                        </td>
+
+                        <td class="text-center">
+                            ✓
+                        </td>
+
+                        <td class="text-center text-green-400">
+                            ✓
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td class="p-5 text-slate-400">
+                            Bonusové materiály
+                        </td>
+
+                        <td class="text-center">
+                            —
+                        </td>
+
+                        <td class="text-center">
+                            —
+                        </td>
+
+                        <td class="text-center text-green-400">
+                            ✓
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td class="p-5 text-slate-400">
+                            Cena
+                        </td>
+
+                        <td class="text-center font-bold">
+                            9,90 €
+                        </td>
+
+                        <td class="text-center font-bold">
+                            7,90 €
+                        </td>
+
+                        <td class="text-center text-indigo-400 font-black">
+                            14,90 €
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ========================================================= -->
+<!-- UKAZKA -->
+<!-- ========================================================= -->
+
+<section class="py-20 bg-slate-900">
+
+    <div class="max-w-5xl mx-auto px-4">
+
+        <div class="text-center mb-10">
+
+            <span class="text-indigo-400 text-xs font-bold uppercase tracking-widest">
+                UKÁŽKA
+            </span>
+
+            <h2 class="text-3xl sm:text-4xl font-black mt-2">
+                Čo môžeš očakávať?
+            </h2>
+
+        </div>
+
+
+        <div class="max-w-md mx-auto
+                    bg-slate-800
+                    border border-slate-700
+                    rounded-3xl p-6
+                    shadow-2xl">
+
+            <div class="flex justify-between items-center mb-6">
+
+                <div>
+                    <div class="text-xs text-slate-500">
+                        SUPPLIER
+                    </div>
+
+                    <div class="font-black text-lg">
+                        #001
+                    </div>
+                </div>
+
+                <div class="w-10 h-10 rounded-xl
+                            bg-indigo-500/10
+                            text-indigo-400
+                            flex items-center justify-center">
+
+                    <i class="fa-solid fa-file-lines"></i>
+
+                </div>
+
+            </div>
+
+
+            <div class="space-y-4 text-sm">
+
+                <div class="flex justify-between">
+                    <span class="text-slate-500">
+                        Kategória
+                    </span>
+
+                    <span class="font-bold">
+                        Electronics
+                    </span>
+                </div>
+
+
+                <div class="flex justify-between">
+                    <span class="text-slate-500">
+                        Typ
+                    </span>
+
+                    <span class="font-bold">
+                        B2B Supplier
+                    </span>
+                </div>
+
+
+                <div class="flex justify-between">
+                    <span class="text-slate-500">
+                        MOQ
+                    </span>
+
+                    <span class="font-bold">
+                        1–10 ks
+                    </span>
+                </div>
+
+
+                <div class="flex justify-between">
+                    <span class="text-slate-500">
+                        Kontakt
+                    </span>
+
+                    <span class="font-bold text-green-400">
+                        WhatsApp / WeChat
+                    </span>
+                </div>
+
+
+                <div class="flex justify-between">
+                    <span class="text-slate-500">
+                        EU sklad
+                    </span>
+
+                    <span class="font-bold">
+                        Podľa dodávateľa
+                    </span>
+                </div>
+
+            </div>
+
+
+            <div class="mt-6 pt-5 border-t border-slate-700
+                        text-xs text-slate-500">
+
+                Ukážka formátu. Pred objednávkou si vždy
+                over aktuálne podmienky konkrétneho dodávateľa.
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ========================================================= -->
+<!-- RECENZIE -->
+<!-- ========================================================= -->
+
+<section id="recenzie" class="py-20">
+
+    <div class="max-w-6xl mx-auto px-4">
+
+        <div class="text-center mb-10">
+
+            <h2 class="text-3xl sm:text-4xl font-black">
+                Hodnotenia zákazníkov
+            </h2>
+
+            <p class="text-slate-500 text-xs mt-3">
+                Recenzie nižšie sú pripravené ako ukážkový obsah.
+                Nahraď ich vlastnými reálnymi recenziami zákazníkov.
+            </p>
+
+        </div>
+
+
+        <div class="grid md:grid-cols-3 gap-6">
+
+
+            <div class="bg-slate-800/40 border border-slate-800
+                        rounded-2xl p-6">
+
+                <div class="text-yellow-400 mb-4">
+                    ★★★★★
+                </div>
+
+                <p class="text-slate-300 text-sm italic">
+                    „Ukážková recenzia zákazníka.“
+                </p>
+
+                <div class="mt-5 font-bold text-sm">
+                    Zákazník
+                </div>
+
+            </div>
+
+
+            <div class="bg-slate-800/40 border border-slate-800
+                        rounded-2xl p-6">
+
+                <div class="text-yellow-400 mb-4">
+                    ★★★★★
+                </div>
+
+                <p class="text-slate-300 text-sm italic">
+                    „Ukážková recenzia zákazníka.“
+                </p>
+
+                <div class="mt-5 font-bold text-sm">
+                    Zákazník
+                </div>
+
+            </div>
+
+
+            <div class="bg-slate-800/40 border border-slate-800
+                        rounded-2xl p-6">
+
+                <div class="text-yellow-400 mb-4">
+                    ★★★★★
+                </div>
+
+                <p class="text-slate-300 text-sm italic">
+                    „Ukážková recenzia zákazníka.“
+                </p>
+
+                <div class="mt-5 font-bold text-sm">
+                    Zákazník
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ========================================================= -->
+<!-- FAQ -->
+<!-- ========================================================= -->
+
+<section id="faq" class="py-20 bg-slate-900">
+
+    <div class="max-w-3xl mx-auto px-4">
+
+        <div class="text-center mb-10">
+
+            <h2 class="text-3xl sm:text-4xl font-black">
                 Často kladené otázky
             </h2>
 
-            <div class="space-y-3">
-
-                <details class="bg-slate-800/50 p-4 rounded-xl border border-slate-700/60 cursor-pointer group">
-
-                    <summary class="font-bold text-sm sm:text-base text-white flex justify-between items-center">
-                        Ako a kedy mi zoznam príde?
-
-                        <i class="fa-solid fa-chevron-down text-indigo-400 group-open:rotate-180 transition"></i>
-                    </summary>
-
-                    <p class="text-slate-400 text-xs sm:text-sm mt-3 leading-relaxed">
-                        Po kontaktovaní cez Instagram ti pošleme informácie k objednávke a ďalší postup.
-                    </p>
-
-                </details>
-
-                <details class="bg-slate-800/50 p-4 rounded-xl border border-slate-700/60 cursor-pointer group">
-
-                    <summary class="font-bold text-sm sm:text-base text-white flex justify-between items-center">
-                        Čo presne PDF súbor obsahuje?
-
-                        <i class="fa-solid fa-chevron-down text-indigo-400 group-open:rotate-180 transition"></i>
-                    </summary>
-
-                    <p class="text-slate-400 text-xs sm:text-sm mt-3 leading-relaxed">
-                        Názvy overených firiem, priame WhatsApp/WeChat kontakty na obchodníkov, odkazy na B2B portály, podmienky minimálnych objednávok a šablóny správ na vyjednávanie cien.
-                    </p>
-
-                </details>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="bg-slate-950 py-8 border-t border-slate-850 text-center text-slate-500 text-xs">
-
-        <p class="text-white font-bold text-base mb-1">
-            VendorList.sk
-        </p>
-
-        <p>
-            © 2026 VendorList. Všetky práva vyhradené.
-        </p>
-
-    </footer>
-
-    <!-- NOTIFIKÁCIE PREDAJOV -->
-    <div id="toast"
-         class="fixed bottom-4 left-4 bg-slate-900 border border-slate-700 text-white px-4 py-3 rounded-2xl shadow-2xl hidden items-center gap-3 z-50">
-
-        <div class="w-10 h-10 rounded-xl bg-indigo-600/20 text-indigo-400 flex items-center justify-center">
-            <i class="fa-solid fa-bag-shopping"></i>
         </div>
 
-        <div class="text-xs">
 
-            <p class="font-bold text-white" id="toastName">
-                Marek z Bratislavy
-            </p>
+        <div class="space-y-3">
 
-            <p class="text-slate-400" id="toastItem">
-                kúpil Tech & Elektronika List
-            </p>
+
+            <details class="bg-slate-800/50 border border-slate-700
+                            rounded-2xl p-5 group">
+
+                <summary class="cursor-pointer font-bold flex justify-between">
+
+                    Ako dostanem zoznam?
+
+                    <i class="fa-solid fa-chevron-down
+                              text-indigo-400
+                              group-open:rotate-180 transition">
+                    </i>
+
+                </summary>
+
+                <p class="text-slate-400 text-sm mt-4 leading-relaxed">
+
+                    Kontaktuj nás cez Instagram
+                    @vendor.list_sk_cz a pošleme ti informácie
+                    k objednávke.
+
+                </p>
+
+            </details>
+
+
+            <details class="bg-slate-800/50 border border-slate-700
+                            rounded-2xl p-5 group">
+
+                <summary class="cursor-pointer font-bold flex justify-between">
+
+                    Čo zoznam obsahuje?
+
+                    <i class="fa-solid fa-chevron-down
+                              text-indigo-400
+                              group-open:rotate-180 transition">
+                    </i>
+
+                </summary>
+
+                <p class="text-slate-400 text-sm mt-4 leading-relaxed">
+
+                    Podľa konkrétneho balíka môže obsahovať kontakty,
+                    kategórie produktov, MOQ informácie a ďalšie
+                    materiály.
+
+                </p>
+
+            </details>
+
+
+            <details class="bg-slate-800/50 border border-slate-700
+                            rounded-2xl p-5 group">
+
+                <summary class="cursor-pointer font-bold flex justify-between">
+
+                    Sú dodávatelia overení?
+
+                    <i class="fa-solid fa-chevron-down
+                              text-indigo-400
+                              group-open:rotate-180 transition">
+                    </i>
+
+                </summary>
+
+                <p class="text-slate-400 text-sm mt-4 leading-relaxed">
+
+                    Pred objednávkou si vždy over aktuálnosť,
+                    ceny, podmienky a ďalšie informácie priamo
+                    u konkrétneho dodávateľa.
+
+                </p>
+
+            </details>
+
+
+            <details class="bg-slate-800/50 border border-slate-700
+                            rounded-2xl p-5 group">
+
+                <summary class="cursor-pointer font-bold flex justify-between">
+
+                    Môžem zoznam použiť na dropshipping?
+
+                    <i class="fa-solid fa-chevron-down
+                              text-indigo-400
+                              group-open:rotate-180 transition">
+                    </i>
+
+                </summary>
+
+                <p class="text-slate-400 text-sm mt-4 leading-relaxed">
+
+                    Informácie môžu byť použiteľné pri dropshippingu,
+                    ale podmienky sa líšia podľa konkrétneho dodávateľa.
+
+                </p>
+
+            </details>
+
+
+            <details class="bg-slate-800/50 border border-slate-700
+                            rounded-2xl p-5 group">
+
+                <summary class="cursor-pointer font-bold flex justify-between">
+
+                    Ako vás kontaktujem?
+
+                    <i class="fa-solid fa-chevron-down
+                              text-indigo-400
+                              group-open:rotate-180 transition">
+                    </i>
+
+                </summary>
+
+                <p class="text-slate-400 text-sm mt-4 leading-relaxed">
+
+                    Instagram:
+                    @vendor.list_sk_cz
+
+                </p>
+
+            </details>
+
+
+            <details class="bg-slate-800/50 border border-slate-700
+                            rounded-2xl p-5 group">
+
+                <summary class="cursor-pointer font-bold flex justify-between">
+
+                    Je zisk garantovaný?
+
+                    <i class="fa-solid fa-chevron-down
+                              text-indigo-400
+                              group-open:rotate-180 transition">
+                    </i>
+
+                </summary>
+
+                <p class="text-slate-400 text-sm mt-4 leading-relaxed">
+
+                    Nie. Žiadny zoznam dodávateľov negarantuje zisk.
+                    Výsledok závisí od výberu produktu, nákupnej ceny,
+                    predajnej ceny, marketingu, dopravy a ďalších nákladov.
+
+                </p>
+
+            </details>
 
         </div>
+
     </div>
 
-    <!-- JAVASCRIPT -->
-    <script>
-
-        // ODPOČÍTAVANIE
-        let time = 899;
-
-        const countdownEl = document.getElementById('countdown');
-
-        setInterval(() => {
-
-            const minutes = Math.floor(time / 60);
-
-            let seconds = time % 60;
-
-            seconds = seconds < 10 ? '0' + seconds : seconds;
-
-            countdownEl.innerHTML = `${minutes}:${seconds}`;
-
-            if (time > 0) time--;
-
-        }, 1000);
+</section>
 
 
-        // NOTIFIKÁCIE
-        const names = [
-            'Patrik z Nitry',
-            'Jozef z Košíc',
-            'Martin z Prahy',
-            'Matej zo Žiliny',
-            'Lukáš z Brna',
-            'Adam z Bratislavy'
-        ];
+<!-- ========================================================= -->
+<!-- FINAL CTA -->
+<!-- ========================================================= -->
 
-        const items = [
-            'Tech & Elektronika List',
-            'Móda & Streetwear List',
-            'Megapack 2026'
-        ];
+<section class="py-20">
 
+    <div class="max-w-5xl mx-auto px-4">
 
-        function showNotification() {
+        <div class="relative overflow-hidden
+                    rounded-3xl
+                    bg-gradient-to-r
+                    from-indigo-600
+                    to-violet-600
+                    p-8 sm:p-12 text-center">
 
-            const toast = document.getElementById('toast');
+            <div class="absolute inset-0 bg-white/5"></div>
 
-            const randomName =
-                names[Math.floor(Math.random() * names.length)];
+            <div class="relative">
 
-            const randomItem =
-                items[Math.floor(Math.random() * items.length)];
+                <div class="text-4xl mb-4">
+                    🚀
+                </div>
 
+                <h2 class="text-3xl sm:text-5xl font-black">
+                    Ready to start?
+                </h2>
 
-            document.getElementById('toastName').innerText =
-                randomName;
-
-            document.getElementById('toastItem').innerText =
-                'práve kúpil ' + randomItem;
+                <p class="text-indigo-100 mt-3 max-w-xl mx-auto">
+                    Vyber si zoznam a napíš nám na Instagram.
+                </p>
 
 
-            toast.classList.remove('hidden');
+                <a
+                    href="https://ig.me/m/vendor.list_sk_cz"
+                    target="_blank"
+                    class="inline-flex mt-7
+                           bg-white text-indigo-700
+                           hover:bg-slate-100
+                           px-8 py-4 rounded-xl
+                           font-black
+                           transition
+                           items-center gap-2"
+                >
 
-            toast.classList.add(
-                'flex',
-                'toast-active'
-            );
+                    <i class="fa-brands fa-instagram"></i>
+
+                    @vendor.list_sk_cz
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
 
 
-            setTimeout(() => {
+<!-- ========================================================= -->
+<!-- FOOTER -->
+<!-- ========================================================= -->
 
-                toast.classList.add('hidden');
+<footer class="bg-slate-950 border-t border-slate-800">
 
-                toast.classList.remove(
-                    'flex',
-                    'toast-active'
-                );
+    <div class="max-w-7xl mx-auto px-4 py-10">
 
-            }, 5000);
+        <div class="flex flex-col md:flex-row
+                    justify-between gap-6">
+
+            <div>
+
+                <div class="text-xl font-black">
+                    Vendor<span class="text-indigo-500">List</span>
+                </div>
+
+                <p class="text-slate-500 text-sm mt-2">
+                    Dodávatelia pre e-shopy na jednom mieste.
+                </p>
+
+            </div>
+
+
+            <div class="flex flex-col gap-2 text-sm">
+
+                <a
+                    href="https://ig.me/m/vendor.list_sk_cz"
+                    target="_blank"
+                    class="text-slate-400 hover:text-indigo-400"
+                >
+                    Instagram @vendor.list_sk_cz
+                </a>
+
+                <a href="#faq"
+                   class="text-slate-400 hover:text-indigo-400">
+                    FAQ
+                </a>
+
+                <!-- TODO:
+                     Nahraď placeholder skutočnými stránkami,
+                     keď ich vytvoríš. -->
+
+                <span class="text-slate-600">
+                    Podmienky
+                </span>
+
+                <span class="text-slate-600">
+                    Ochrana súkromia
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="border-t border-slate-800 mt-8 pt-6
+                    text-center text-xs text-slate-600">
+
+            © 2026 VendorList.sk. Všetky práva vyhradené.
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- ========================================================= -->
+<!-- DEMO ACTIVITY NOTIFICATION -->
+<!-- ========================================================= -->
+
+<div
+    id="toast"
+    class="fixed bottom-4 left-4
+           bg-slate-900/95 backdrop-blur-xl
+           border border-slate-700
+           px-4 py-3 rounded-2xl
+           shadow-2xl
+           hidden
+           items-center gap-3
+           z-50
+           max-w-[300px]"
+>
+
+    <div class="w-10 h-10 rounded-xl
+                bg-indigo-500/10
+                text-indigo-400
+                flex items-center justify-center">
+
+        <i class="fa-solid fa-eye"></i>
+
+    </div>
+
+
+    <div>
+
+        <p id="toastTitle"
+           class="font-bold text-sm">
+
+            Nová aktivita
+
+        </p>
+
+        <p id="toastText"
+           class="text-xs text-slate-400">
+
+            Niekto si práve prezerá ponuku.
+
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- ========================================================= -->
+<!-- JAVASCRIPT -->
+<!-- ========================================================= -->
+
+<script>
+
+    /* ========================================================
+       COUNTDOWN
+    ======================================================== */
+
+    let time = 899;
+
+    const countdown = document.getElementById("countdown");
+
+    const countdownInterval = setInterval(() => {
+
+        const minutes = Math.floor(time / 60);
+
+        let seconds = time % 60;
+
+        seconds = seconds < 10
+            ? "0" + seconds
+            : seconds;
+
+        countdown.textContent =
+            `${minutes}:${seconds}`;
+
+        if (time <= 0) {
+
+            clearInterval(countdownInterval);
+
+            countdown.textContent = "00:00";
+
+            return;
+        }
+
+        time--;
+
+    }, 1000);
+
+
+    /* ========================================================
+       MOBILE MENU
+    ======================================================== */
+
+    const menuButton =
+        document.getElementById("menuButton");
+
+    const mobileMenu =
+        document.getElementById("mobileMenu");
+
+
+    menuButton.addEventListener("click", () => {
+
+        mobileMenu.classList.toggle("hidden");
+
+        const icon =
+            menuButton.querySelector("i");
+
+        if (mobileMenu.classList.contains("hidden")) {
+
+            icon.classList.remove("fa-xmark");
+            icon.classList.add("fa-bars");
+
+        } else {
+
+            icon.classList.remove("fa-bars");
+            icon.classList.add("fa-xmark");
 
         }
 
+    });
 
-        setTimeout(showNotification, 3000);
 
-        setInterval(showNotification, 16000);
+    /* Close mobile menu after clicking */
 
-    </script>
+    document.querySelectorAll("#mobileMenu a")
+        .forEach(link => {
+
+            link.addEventListener("click", () => {
+
+                mobileMenu.classList.add("hidden");
+
+                const icon =
+                    menuButton.querySelector("i");
+
+                icon.classList.remove("fa-xmark");
+                icon.classList.add("fa-bars");
+
+            });
+
+        });
+
+
+    /* ========================================================
+       DEMO ACTIVITY NOTIFICATION
+
+       Toto je iba vizuálny DEMO prvok.
+       Neprezentuje skutočné objednávky.
+    ======================================================== */
+
+    const toast =
+        document.getElementById("toast");
+
+    const toastTitle =
+        document.getElementById("toastTitle");
+
+    const toastText =
+        document.getElementById("toastText");
+
+
+    const demoMessages = [
+
+        [
+            "Nová aktivita",
+            "Niekto si práve prezerá Tech & Elektronika."
+        ],
+
+        [
+            "Nová aktivita",
+            "Niekto si práve prezerá Módu & Streetwear."
+        ],
+
+        [
+            "Nová aktivita",
+            "Niekto si práve prezerá Megapack 2026."
+        ],
+
+        [
+            "Tip",
+            "Megapack obsahuje obe hlavné kategórie."
+        ]
+
+    ];
+
+
+    function showToast() {
+
+        const message =
+            demoMessages[
+                Math.floor(
+                    Math.random() * demoMessages.length
+                )
+            ];
+
+
+        toastTitle.textContent =
+            message[0];
+
+        toastText.textContent =
+            message[1];
+
+
+        toast.classList.remove("hidden");
+
+        toast.classList.add(
+            "flex",
+            "toast-active"
+        );
+
+
+        setTimeout(() => {
+
+            toast.classList.add("hidden");
+
+            toast.classList.remove(
+                "flex",
+                "toast-active"
+            );
+
+        }, 5000);
+
+    }
+
+
+    setTimeout(showToast, 4000);
+
+    setInterval(showToast, 18000);
+
+</script>
 
 </body>
 </html>
