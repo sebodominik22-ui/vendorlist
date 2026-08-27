@@ -7,12 +7,11 @@
     <title>VendorList #1 | RESELL OD 0 €</title>
     <meta name="description" content="VendorList #1 — praktický e-book pre začínajúcich resellerov. Výber produktu, dodávateľ, scam check, marža, predaj a 30-dňový plán.">
 
+    <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    >
+    <!-- FontAwesome (načítaný asynchrónne bez blokovania renderovania) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" media="print" onload="this.media='all'">
 
     <script>
         tailwind.config = {
@@ -34,10 +33,6 @@
     </script>
 
     <style>
-        * {
-            box-sizing: border-box;
-        }
-
         body {
             background: #0f172a;
             overflow-x: hidden;
@@ -89,15 +84,6 @@
             }
         }
 
-        .float {
-            animation: float 5s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%,100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
-
         .chapter-number {
             font-variant-numeric: tabular-nums;
         }
@@ -111,1522 +97,683 @@
 
 <body class="text-slate-100 antialiased">
 
-<!-- ========================================================= -->
 <!-- NAVBAR -->
-<!-- ========================================================= -->
-
 <nav class="sticky top-0 z-50 bg-slate-950/80 backdrop-blur-xl border-b border-slate-800/80">
-
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
         <div class="h-16 flex items-center justify-between">
-
             <a href="#" class="flex items-center gap-3">
-
                 <div class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center shadow-lg shadow-indigo-600/20">
                     <i class="fa-solid fa-book-open"></i>
                 </div>
-
                 <span class="text-xl font-black tracking-tight">
                     Vendor<span class="text-indigo-400">List</span>
                 </span>
-
             </a>
 
             <div class="hidden md:flex items-center gap-7 text-sm font-semibold text-slate-300">
-
-                <a href="#obsah" class="hover:text-indigo-400 transition">
-                    Obsah
-                </a>
-
-                <a href="#bonusy" class="hover:text-indigo-400 transition">
-                    Bonusy
-                </a>
-
-                <a href="#ako-to-funguje" class="hover:text-indigo-400 transition">
-                    Ako to funguje
-                </a>
-
-                <a href="#faq" class="hover:text-indigo-400 transition">
-                    FAQ
-                </a>
-
+                <a href="#obsah" class="hover:text-indigo-400 transition">Obsah</a>
+                <a href="#bonusy" class="hover:text-indigo-400 transition">Bonusy</a>
+                <a href="#ako-to-funguje" class="hover:text-indigo-400 transition">Ako to funguje</a>
+                <a href="#faq" class="hover:text-indigo-400 transition">FAQ</a>
             </div>
 
-            <a
-                href="https://ig.me/m/vendor.list_sk_cz"
-                target="_blank"
-                rel="noopener"
-                class="hidden sm:inline-flex bg-indigo-600 hover:bg-indigo-500 px-5 py-2.5 rounded-xl font-bold text-sm transition shadow-lg shadow-indigo-600/20"
-            >
+            <a href="https://ig.me/m/vendor.list_sk_cz" target="_blank" rel="noopener" class="hidden sm:inline-flex bg-indigo-600 hover:bg-indigo-500 px-5 py-2.5 rounded-xl font-bold text-sm transition shadow-lg shadow-indigo-600/20">
                 Získať e-book — 10 €
             </a>
 
-            <button
-                id="menuBtn"
-                aria-label="Otvoriť menu"
-                class="sm:hidden w-10 h-10 rounded-xl bg-slate-800 border border-slate-700"
-            >
+            <button id="menuBtn" aria-label="Otvoriť menu" class="sm:hidden w-10 h-10 rounded-xl bg-slate-800 border border-slate-700">
                 <i class="fa-solid fa-bars"></i>
             </button>
-
         </div>
 
         <div id="mobileMenu" class="hidden sm:hidden pb-4">
-
             <div class="flex flex-col gap-1">
-
-                <a href="#obsah" class="p-3 rounded-xl hover:bg-slate-800">
-                    Obsah
-                </a>
-
-                <a href="#bonusy" class="p-3 rounded-xl hover:bg-slate-800">
-                    Bonusy
-                </a>
-
-                <a href="#ako-to-funguje" class="p-3 rounded-xl hover:bg-slate-800">
-                    Ako to funguje
-                </a>
-
-                <a href="#faq" class="p-3 rounded-xl hover:bg-slate-800">
-                    FAQ
-                </a>
-
-                <a
-                    href="https://ig.me/m/vendor.list_sk_cz"
-                    target="_blank"
-                    rel="noopener"
-                    class="mt-2 p-3 rounded-xl bg-indigo-600 text-center font-bold"
-                >
+                <a href="#obsah" class="p-3 rounded-xl hover:bg-slate-800">Obsah</a>
+                <a href="#bonusy" class="p-3 rounded-xl hover:bg-slate-800">Bonusy</a>
+                <a href="#ako-to-funguje" class="p-3 rounded-xl hover:bg-slate-800">Ako to funguje</a>
+                <a href="#faq" class="p-3 rounded-xl hover:bg-slate-800">FAQ</a>
+                <a href="https://ig.me/m/vendor.list_sk_cz" target="_blank" rel="noopener" class="mt-2 p-3 rounded-xl bg-indigo-600 text-center font-bold">
                     Získať e-book — 10 €
                 </a>
-
             </div>
-
         </div>
-
     </div>
-
 </nav>
 
-
-<!-- ========================================================= -->
 <!-- HERO -->
-<!-- ========================================================= -->
-
 <header class="relative overflow-hidden grid-bg">
-
     <div class="hero-glow top-0 left-1/2 -translate-x-1/2"></div>
-
     <div class="relative max-w-6xl mx-auto px-4 sm:px-6 py-20 sm:py-28">
-
         <div class="text-center max-w-4xl mx-auto fade-up">
-
             <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-xs sm:text-sm font-bold text-indigo-300 mb-7">
-
                 <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-
                 VENDORLIST #1 • E-BOOK & RESELL KIT 2026
-
             </div>
 
             <h1 class="text-5xl sm:text-6xl lg:text-8xl font-black tracking-tight leading-[.95]">
-
-                Od 0 €
-
-                <br>
-
-                k prvému
-
-                <br>
-
-                <span class="gradient-text">
-                    reálnemu predaju.
-                </span>
-
+                Od 0 € <br> k prvému <br>
+                <span class="gradient-text">reálnemu predaju.</span>
             </h1>
 
             <p class="mt-7 max-w-2xl mx-auto text-slate-400 text-base sm:text-xl leading-relaxed">
-
-                Praktický e-book pre začínajúcich resellerov.
-                Naučíš sa vybrať produkt, preveriť dodávateľa,
-                vypočítať skutočný zisk a pripraviť sa na prvý predaj.
-
+                Praktický e-book pre začínajúcich resellerov. Naučíš sa vybrať produkt, preveriť dodávateľa, vypočítať skutočný zisk a pripraviť sa na prvý predaj.
             </p>
 
             <div class="mt-9 flex flex-col sm:flex-row justify-center gap-3">
-
-                <a
-                    href="https://ig.me/m/vendor.list_sk_cz"
-                    target="_blank"
-                    rel="noopener"
-                    class="inline-flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-500 px-8 py-4 rounded-2xl font-black text-lg transition shadow-xl shadow-indigo-600/20"
-                >
+                <a href="https://ig.me/m/vendor.list_sk_cz" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-500 px-8 py-4 rounded-2xl font-black text-lg transition shadow-xl shadow-indigo-600/20">
                     Chcem e-book za 10 €
                     <i class="fa-solid fa-arrow-right"></i>
                 </a>
-
-                <a
-                    href="#obsah"
-                    class="inline-flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 px-8 py-4 rounded-2xl font-bold transition"
-                >
+                <a href="#obsah" class="inline-flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 px-8 py-4 rounded-2xl font-bold transition">
                     Pozrieť obsah
                     <i class="fa-solid fa-chevron-down"></i>
                 </a>
-
             </div>
 
             <div class="mt-12 flex flex-wrap justify-center gap-3 text-xs sm:text-sm text-slate-400">
-
                 <span class="px-4 py-2 rounded-full bg-slate-900/80 border border-slate-800">
-                    <i class="fa-solid fa-book text-indigo-400 mr-2"></i>
-                    10 kapitol
+                    <i class="fa-solid fa-book text-indigo-400 mr-2"></i>10 kapitol
                 </span>
-
                 <span class="px-4 py-2 rounded-full bg-slate-900/80 border border-slate-800">
-                    <i class="fa-solid fa-shield text-emerald-400 mr-2"></i>
-                    Supplier Verification
+                    <i class="fa-solid fa-shield text-emerald-400 mr-2"></i>Supplier Verification
                 </span>
-
                 <span class="px-4 py-2 rounded-full bg-slate-900/80 border border-slate-800">
-                    <i class="fa-solid fa-comments text-violet-400 mr-2"></i>
-                    20 šablón správ
+                    <i class="fa-solid fa-comments text-violet-400 mr-2"></i>20 šablón správ
                 </span>
-
                 <span class="px-4 py-2 rounded-full bg-slate-900/80 border border-slate-800">
-                    <i class="fa-solid fa-calendar-days text-yellow-400 mr-2"></i>
-                    30-dňový plán
+                    <i class="fa-solid fa-calendar-days text-yellow-400 mr-2"></i>30-dňový plán
                 </span>
-
             </div>
-
         </div>
-
     </div>
-
 </header>
 
-
-<!-- ========================================================= -->
 <!-- PRODUCT INTRO -->
-<!-- ========================================================= -->
-
 <section class="py-20 border-y border-slate-800/80">
-
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
-
         <div class="grid lg:grid-cols-2 gap-10 items-center">
-
             <div>
-
-                <span class="text-indigo-400 text-xs font-black uppercase tracking-[.25em]">
-                    Čo vlastne kupuješ
-                </span>
-
-                <h2 class="mt-3 text-3xl sm:text-5xl font-black leading-tight">
-                    Nie ďalšie motivačné video z TikToku.
-                </h2>
-
+                <span class="text-indigo-400 text-xs font-black uppercase tracking-[.25em]">Čo vlastne kupuješ</span>
+                <h2 class="mt-3 text-3xl sm:text-5xl font-black leading-tight">Nie ďalšie motivačné video z TikToku.</h2>
                 <p class="mt-5 text-slate-400 leading-relaxed">
-
-                    VendorList #1 je postavený ako praktický pracovný materiál.
-                    Namiesto sľubov o rýchlom zbohatnutí rieši proces:
-                    produkt → dodávateľ → kontrola → náklady → ponuka → predaj.
-
+                    VendorList #1 je postavený ako praktický pracovný materiál. Namiesto sľubov o rýchlom zbohatnutí rieši proces: produkt → dodávateľ → kontrola → náklady → ponuka → predaj.
                 </p>
-
                 <div class="mt-7 space-y-3">
-
                     <div class="flex gap-3">
                         <i class="fa-solid fa-check text-emerald-400 mt-1"></i>
-                        <span class="text-slate-300">
-                            Naučíš sa, kde môže vzniknúť reálna marža.
-                        </span>
+                        <span class="text-slate-300">Naučíš sa, kde môže vzniknúť reálna marža.</span>
                     </div>
-
                     <div class="flex gap-3">
                         <i class="fa-solid fa-check text-emerald-400 mt-1"></i>
-                        <span class="text-slate-300">
-                            Naučíš sa identifikovať rizikových dodávateľov.
-                        </span>
+                        <span class="text-slate-300">Naučíš sa identifikovať rizikových dodávateľov.</span>
                     </div>
-
                     <div class="flex gap-3">
                         <i class="fa-solid fa-check text-emerald-400 mt-1"></i>
-                        <span class="text-slate-300">
-                            Naučíš sa počítať náklady ešte pred nákupom.
-                        </span>
+                        <span class="text-slate-300">Naučíš sa počítať náklady ešte pred nákupom.</span>
                     </div>
-
                     <div class="flex gap-3">
                         <i class="fa-solid fa-check text-emerald-400 mt-1"></i>
-                        <span class="text-slate-300">
-                            Dostaneš konkrétne šablóny a checklisty.
-                        </span>
+                        <span class="text-slate-300">Dostaneš konkrétne šablóny a checklisty.</span>
                     </div>
-
                 </div>
-
             </div>
-
 
             <!-- EBOOK MOCKUP -->
-
             <div class="relative flex justify-center">
-
                 <div class="hero-glow absolute opacity-50"></div>
-
                 <div class="relative w-[270px] sm:w-[330px] rotate-2 hover:rotate-0 transition duration-500">
-
                     <div class="bg-slate-950 border border-indigo-500/50 rounded-[28px] p-4 shadow-2xl shadow-indigo-500/20">
-
                         <div class="aspect-[3/4] rounded-2xl bg-gradient-to-br from-indigo-950 via-slate-900 to-violet-950 border border-indigo-400/20 p-7 flex flex-col justify-between">
-
                             <div>
-
-                                <div class="inline-block px-3 py-1 rounded-full bg-indigo-500/20 border border-indigo-400/30 text-indigo-300 text-[10px] font-black">
-                                    E-BOOK 2026
-                                </div>
-
-                                <h3 class="mt-8 text-4xl font-black leading-none">
-                                    VENDOR
-                                    <span class="text-indigo-400">
-                                        LIST
-                                    </span>
-                                </h3>
-
-                                <p class="mt-3 text-xl font-bold text-violet-300">
-                                    #1
-                                </p>
-
-                                <p class="mt-10 text-2xl font-black">
-                                    RESELL
-                                    <br>
-                                    OD 0 €
-                                </p>
-
+                                <div class="inline-block px-3 py-1 rounded-full bg-indigo-500/20 border border-indigo-400/30 text-indigo-300 text-[10px] font-black">E-BOOK 2026</div>
+                                <h3 class="mt-8 text-4xl font-black leading-none">VENDOR <span class="text-indigo-400">LIST</span></h3>
+                                <p class="mt-3 text-xl font-bold text-violet-300">#1</p>
+                                <p class="mt-10 text-2xl font-black">RESELL <br> OD 0 €</p>
                             </div>
-
-                            <div class="text-xs text-slate-500">
-                                Praktický sprievodca pre začínajúcich predajcov.
-                            </div>
-
+                            <div class="text-xs text-slate-500">Praktický sprievodca pre začínajúcich predajcov.</div>
                         </div>
-
                     </div>
-
                 </div>
-
             </div>
-
         </div>
-
     </div>
-
 </section>
 
-
-<!-- ========================================================= -->
 <!-- WHAT YOU GET -->
-<!-- ========================================================= -->
-
 <section class="py-20 bg-slate-900/60">
-
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
-
         <div class="text-center max-w-2xl mx-auto mb-12">
-
-            <span class="text-indigo-400 text-xs font-black uppercase tracking-[.25em]">
-                Čo dostaneš
-            </span>
-
-            <h2 class="mt-3 text-3xl sm:text-5xl font-black">
-                Jeden balík. Praktické nástroje.
-            </h2>
-
+            <span class="text-indigo-400 text-xs font-black uppercase tracking-[.25em]">Čo dostaneš</span>
+            <h2 class="mt-3 text-3xl sm:text-5xl font-black">Jeden balík. Praktické nástroje.</h2>
         </div>
 
-
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-
-            <!-- CARD -->
-
             <div class="glass rounded-3xl p-7 hover:-translate-y-1 hover:border-indigo-500/50 transition">
-
                 <div class="w-12 h-12 rounded-2xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-xl">
                     <i class="fa-solid fa-book-open"></i>
                 </div>
-
-                <h3 class="mt-5 text-xl font-black">
-                    Kompletný e-book
-                </h3>
-
-                <p class="mt-2 text-sm text-slate-400 leading-relaxed">
-                    10 kapitol od základov resellu až po 30-dňový akčný plán.
-                </p>
-
+                <h3 class="mt-5 text-xl font-black">Kompletný e-book</h3>
+                <p class="mt-2 text-sm text-slate-400 leading-relaxed">10 kapitol od základov resellu až po 30-dňový akčný plán.</p>
             </div>
 
-
             <div class="glass rounded-3xl p-7 hover:-translate-y-1 hover:border-indigo-500/50 transition">
-
                 <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl">
                     <i class="fa-solid fa-shield-halved"></i>
                 </div>
-
-                <h3 class="mt-5 text-xl font-black">
-                    Supplier Verification
-                </h3>
-
-                <p class="mt-2 text-sm text-slate-400 leading-relaxed">
-                    Checklist na kontrolu firmy, webu, platby, recenzií a rizikových signálov.
-                </p>
-
+                <h3 class="mt-5 text-xl font-black">Supplier Verification</h3>
+                <p class="mt-2 text-sm text-slate-400 leading-relaxed">Checklist na kontrolu firmy, webu, platby, recenzií a rizikových signálov.</p>
             </div>
 
-
             <div class="glass rounded-3xl p-7 hover:-translate-y-1 hover:border-indigo-500/50 transition">
-
                 <div class="w-12 h-12 rounded-2xl bg-violet-500/10 text-violet-400 flex items-center justify-center text-xl">
                     <i class="fa-solid fa-calculator"></i>
                 </div>
-
-                <h3 class="mt-5 text-xl font-black">
-                    Kalkulačka marže
-                </h3>
-
-                <p class="mt-2 text-sm text-slate-400 leading-relaxed">
-                    Započítaj nákup, dopravu, poplatky a ďalšie náklady namiesto hádania zisku.
-                </p>
-
+                <h3 class="mt-5 text-xl font-black">Kalkulačka marže</h3>
+                <p class="mt-2 text-sm text-slate-400 leading-relaxed">Započítaj nákup, dopravu, poplatky a ďalšie náklady namiesto hádania zisku.</p>
             </div>
 
-
             <div class="glass rounded-3xl p-7 hover:-translate-y-1 hover:border-indigo-500/50 transition">
-
                 <div class="w-12 h-12 rounded-2xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-xl">
                     <i class="fa-solid fa-comments"></i>
                 </div>
-
-                <h3 class="mt-5 text-xl font-black">
-                    20 šablón správ
-                </h3>
-
-                <p class="mt-2 text-sm text-slate-400 leading-relaxed">
-                    Prvé oslovenie, MOQ, cena, vyjednávanie, vzorka a reklamácia.
-                </p>
-
+                <h3 class="mt-5 text-xl font-black">20 šablón správ</h3>
+                <p class="mt-2 text-sm text-slate-400 leading-relaxed">Prvé oslovenie, MOQ, cena, vyjednávanie, vzorka a reklamácia.</p>
             </div>
 
-
             <div class="glass rounded-3xl p-7 hover:-translate-y-1 hover:border-indigo-500/50 transition">
-
                 <div class="w-12 h-12 rounded-2xl bg-yellow-500/10 text-yellow-400 flex items-center justify-center text-xl">
                     <i class="fa-solid fa-calendar-check"></i>
                 </div>
-
-                <h3 class="mt-5 text-xl font-black">
-                    30-dňový plán
-                </h3>
-
-                <p class="mt-2 text-sm text-slate-400 leading-relaxed">
-                    Konkrétne úlohy od výberu kategórie až po vyhodnotenie prvého predaja.
-                </p>
-
+                <h3 class="mt-5 text-xl font-black">30-dňový plán</h3>
+                <p class="mt-2 text-sm text-slate-400 leading-relaxed">Konkrétne úlohy od výberu kategórie až po vyhodnotenie prvého predaja.</p>
             </div>
 
-
             <div class="glass rounded-3xl p-7 hover:-translate-y-1 hover:border-indigo-500/50 transition">
-
                 <div class="w-12 h-12 rounded-2xl bg-orange-500/10 text-orange-400 flex items-center justify-center text-xl">
                     <i class="fa-solid fa-list-check"></i>
                 </div>
-
-                <h3 class="mt-5 text-xl font-black">
-                    Praktické checklisty
-                </h3>
-
-                <p class="mt-2 text-sm text-slate-400 leading-relaxed">
-                    Aby si vedel, čo skontrolovať predtým, než pošleš peniaze dodávateľovi.
-                </p>
-
+                <h3 class="mt-5 text-xl font-black">Praktické checklisty</h3>
+                <p class="mt-2 text-sm text-slate-400 leading-relaxed">Aby si vedel, čo skontrolovať predtým, než pošleš peniaze dodávateľovi.</p>
             </div>
-
         </div>
-
     </div>
-
 </section>
 
-
-<!-- ========================================================= -->
 <!-- CONTENT / 10 CHAPTERS -->
-<!-- ========================================================= -->
-
 <section id="obsah" class="py-24">
-
     <div class="max-w-5xl mx-auto px-4 sm:px-6">
-
         <div class="text-center mb-14">
-
-            <span class="text-indigo-400 text-xs font-black uppercase tracking-[.25em]">
-                Obsah e-booku
-            </span>
-
-            <h2 class="mt-3 text-3xl sm:text-5xl font-black">
-                10 kapitol, ktoré dávajú proces do poriadku.
-            </h2>
-
+            <span class="text-indigo-400 text-xs font-black uppercase tracking-[.25em]">Obsah e-booku</span>
+            <h2 class="mt-3 text-3xl sm:text-5xl font-black">10 kapitol, ktoré dávajú proces do poriadku.</h2>
         </div>
-
 
         <div class="space-y-4">
-
-            <!-- 01 -->
-
             <div class="glass rounded-3xl p-6 sm:p-7 flex gap-5">
-
-                <div class="chapter-number text-3xl sm:text-4xl font-black text-indigo-500/60">
-                    01
-                </div>
-
+                <div class="chapter-number text-3xl sm:text-4xl font-black text-indigo-500/60">01</div>
                 <div>
-                    <h3 class="text-lg sm:text-xl font-black">
-                        Čo je reálny resell
-                    </h3>
-
-                    <p class="mt-2 text-sm text-slate-400 leading-relaxed">
-                        Ako funguje resell, kde vzniká zisk a aký je rozdiel medzi resellom, dropshippingom a wholesale.
-                    </p>
+                    <h3 class="text-lg sm:text-xl font-black">Čo je reálny resell</h3>
+                    <p class="mt-2 text-sm text-slate-400 leading-relaxed">Ako funguje resell, kde vzniká zisk a aký je rozdiel medzi resellom, dropshippingom a wholesale.</p>
                 </div>
-
             </div>
 
-
-            <!-- 02 -->
-
             <div class="glass rounded-3xl p-6 sm:p-7 flex gap-5">
-
-                <div class="chapter-number text-3xl sm:text-4xl font-black text-indigo-500/60">
-                    02
-                </div>
-
+                <div class="chapter-number text-3xl sm:text-4xl font-black text-indigo-500/60">02</div>
                 <div>
-                    <h3 class="text-lg sm:text-xl font-black">
-                        Ako vybrať produkt
-                    </h3>
-
-                    <p class="mt-2 text-sm text-slate-400 leading-relaxed">
-                        Dopyt, konkurencia, marža, riziko a prečo vysoká marža sama o sebe nestačí.
-                    </p>
+                    <h3 class="text-lg sm:text-xl font-black">Ako vybrať produkt</h3>
+                    <p class="mt-2 text-sm text-slate-400 leading-relaxed">Dopyt, konkurencia, marža, riziko a prečo vysoká marža sama o sebe nestačí.</p>
                 </div>
-
             </div>
 
-
-            <!-- 03 -->
-
             <div class="glass rounded-3xl p-6 sm:p-7 flex gap-5">
-
-                <div class="chapter-number text-3xl sm:text-4xl font-black text-indigo-500/60">
-                    03
-                </div>
-
+                <div class="chapter-number text-3xl sm:text-4xl font-black text-indigo-500/60">03</div>
                 <div>
-                    <h3 class="text-lg sm:text-xl font-black">
-                        Ako nájsť dodávateľa
-                    </h3>
-
-                    <p class="mt-2 text-sm text-slate-400 leading-relaxed">
-                        Google, B2B platformy, veľkoobchody, sociálne siete a spôsob, ako efektívne začať komunikáciu.
-                    </p>
+                    <h3 class="text-lg sm:text-xl font-black">Ako nájsť dodávateľa</h3>
+                    <p class="mt-2 text-sm text-slate-400 leading-relaxed">Google, B2B platformy, veľkoobchody, sociálne siete a spôsob, ako efektívne začať komunikáciu.</p>
                 </div>
-
             </div>
 
-
-            <!-- 04 -->
-
             <div class="glass rounded-3xl p-6 sm:p-7 flex gap-5">
-
-                <div class="chapter-number text-3xl sm:text-4xl font-black text-indigo-500/60">
-                    04
-                </div>
-
+                <div class="chapter-number text-3xl sm:text-4xl font-black text-indigo-500/60">04</div>
                 <div>
-                    <h3 class="text-lg sm:text-xl font-black">
-                        Ako odhaliť scam
-                    </h3>
-
-                    <p class="mt-2 text-sm text-slate-400 leading-relaxed">
-                        Kontrola firmy, domény, IČO/VAT, recenzií, platobných metód a ďalších varovných signálov.
-                    </p>
+                    <h3 class="text-lg sm:text-xl font-black">Ako odhaliť scam</h3>
+                    <p class="mt-2 text-sm text-slate-400 leading-relaxed">Kontrola firmy, domény, IČO/VAT, recenzií, platobných metód a ďalších varovných signálov.</p>
                 </div>
-
             </div>
 
-
-            <!-- 05 -->
-
             <div class="glass rounded-3xl p-6 sm:p-7 flex gap-5">
-
-                <div class="chapter-number text-3xl sm:text-4xl font-black text-indigo-500/60">
-                    05
-                </div>
-
+                <div class="chapter-number text-3xl sm:text-4xl font-black text-indigo-500/60">05</div>
                 <div>
-                    <h3 class="text-lg sm:text-xl font-black">
-                        Ako vypočítať skutočnú maržu
-                    </h3>
-
-                    <p class="mt-2 text-sm text-slate-400 leading-relaxed">
-                        Nákupná cena, doprava, poplatky a ďalšie náklady. Cieľom je poznať reálny výsledok ešte pred nákupom.
-                    </p>
+                    <h3 class="text-lg sm:text-xl font-black">Ako vypočítať skutočnú maržu</h3>
+                    <p class="mt-2 text-sm text-slate-400 leading-relaxed">Nákupná cena, doprava, poplatky a ďalšie náklady. Cieľom je poznať reálny výsledok ešte pred nákupom.</p>
                 </div>
-
             </div>
 
-
-            <!-- 06 -->
-
             <div class="glass rounded-3xl p-6 sm:p-7 flex gap-5">
-
-                <div class="chapter-number text-3xl sm:text-4xl font-black text-indigo-500/60">
-                    06
-                </div>
-
+                <div class="chapter-number text-3xl sm:text-4xl font-black text-indigo-500/60">06</div>
                 <div>
-                    <h3 class="text-lg sm:text-xl font-black">
-                        Ako vytvoriť prvú ponuku
-                    </h3>
-
-                    <p class="mt-2 text-sm text-slate-400 leading-relaxed">
-                        Fotografie, popis, cena a predajné platformy ako Vinted, Marketplace, TikTok alebo Instagram.
-                    </p>
+                    <h3 class="text-lg sm:text-xl font-black">Ako vytvoriť prvú ponuku</h3>
+                    <p class="mt-2 text-sm text-slate-400 leading-relaxed">Fotografie, popis, cena a predajné platformy ako Vinted, Marketplace, TikTok alebo Instagram.</p>
                 </div>
-
             </div>
 
-
-            <!-- 07 -->
-
             <div class="glass rounded-3xl p-6 sm:p-7 flex gap-5">
-
-                <div class="chapter-number text-3xl sm:text-4xl font-black text-indigo-500/60">
-                    07
-                </div>
-
+                <div class="chapter-number text-3xl sm:text-4xl font-black text-indigo-500/60">07</div>
                 <div>
-                    <h3 class="text-lg sm:text-xl font-black">
-                        Ako komunikovať so supplierom
-                    </h3>
-
-                    <p class="mt-2 text-sm text-slate-400 leading-relaxed">
-                        Prvá správa, MOQ, cena, vyjednávanie, vzorka a reklamácia.
-                    </p>
+                    <h3 class="text-lg sm:text-xl font-black">Ako komunikovať so supplierom</h3>
+                    <p class="mt-2 text-sm text-slate-400 leading-relaxed">Prvá správa, MOQ, cena, vyjednávanie, vzorka a reklamácia.</p>
                 </div>
-
             </div>
 
-
-            <!-- 08 -->
-
             <div class="glass rounded-3xl p-6 sm:p-7 flex gap-5">
-
-                <div class="chapter-number text-3xl sm:text-4xl font-black text-indigo-500/60">
-                    08
-                </div>
-
+                <div class="chapter-number text-3xl sm:text-4xl font-black text-indigo-500/60">08</div>
                 <div>
-                    <h3 class="text-lg sm:text-xl font-black">
-                        Prvý predaj
-                    </h3>
-
-                    <p class="mt-2 text-sm text-slate-400 leading-relaxed">
-                        Čo skontrolovať pred objednávkou, ako minimalizovať riziko skladu a čo robiť s nepredajným tovarom.
-                    </p>
+                    <h3 class="text-lg sm:text-xl font-black">Prvý predaj</h3>
+                    <p class="mt-2 text-sm text-slate-400 leading-relaxed">Čo skontrolovať pred objednávkou, ako minimalizovať riziko skladu a čo robiť s nepredajným tovarom.</p>
                 </div>
-
             </div>
 
-
-            <!-- 09 -->
-
             <div class="glass rounded-3xl p-6 sm:p-7 flex gap-5">
-
-                <div class="chapter-number text-3xl sm:text-4xl font-black text-indigo-500/60">
-                    09
-                </div>
-
+                <div class="chapter-number text-3xl sm:text-4xl font-black text-indigo-500/60">09</div>
                 <div>
-                    <h3 class="text-lg sm:text-xl font-black">
-                        Reinvestovanie
-                    </h3>
-
-                    <p class="mt-2 text-sm text-slate-400 leading-relaxed">
-                        Ako pracovať s prvým ziskom a postupne škálovať bez zbytočného viazania kapitálu.
-                    </p>
+                    <h3 class="text-lg sm:text-xl font-black">Reinvestovanie</h3>
+                    <p class="mt-2 text-sm text-slate-400 leading-relaxed">Ako pracovať s prvým ziskom a postupne škálovať bez zbytočného viazania kapitálu.</p>
                 </div>
-
             </div>
 
-
-            <!-- 10 -->
-
             <div class="glass rounded-3xl p-6 sm:p-7 flex gap-5">
-
-                <div class="chapter-number text-3xl sm:text-4xl font-black text-indigo-500/60">
-                    10
-                </div>
-
+                <div class="chapter-number text-3xl sm:text-4xl font-black text-indigo-500/60">10</div>
                 <div>
-                    <h3 class="text-lg sm:text-xl font-black">
-                        30-dňový plán + EÚ minimum
-                    </h3>
-
-                    <p class="mt-2 text-sm text-slate-400 leading-relaxed">
-                        Harmonogram od prvých dní až po vyhodnotenie predaja a základný prehľad povinností pri predaji v EÚ.
-                    </p>
+                    <h3 class="text-lg sm:text-xl font-black">30-dňový plán + EÚ minimum</h3>
+                    <p class="mt-2 text-sm text-slate-400 leading-relaxed">Harmonogram od prvých dní až po vyhodnotenie predaja a základný prehľad povinností pri predaji v EÚ.</p>
                 </div>
-
             </div>
-
         </div>
-
     </div>
-
 </section>
 
-
-<!-- ========================================================= -->
 <!-- EXAMPLE -->
-<!-- ========================================================= -->
-
 <section class="py-20 bg-slate-900/70">
-
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
-
         <div class="grid lg:grid-cols-2 gap-6">
-
             <div class="glass rounded-3xl p-8">
-
-                <span class="text-indigo-400 text-xs font-black uppercase tracking-widest">
-                    Ukážka z e-booku
-                </span>
-
-                <h2 class="mt-3 text-2xl sm:text-3xl font-black">
-                    Skutočná marža ≠ predajná cena mínus nákup.
-                </h2>
-
-                <p class="mt-4 text-slate-400 text-sm leading-relaxed">
-                    Modelový príklad ukazuje, prečo treba pred nákupom započítať všetky relevantné náklady.
-                </p>
+                <span class="text-indigo-400 text-xs font-black uppercase tracking-widest">Ukážka z e-booku</span>
+                <h2 class="mt-3 text-2xl sm:text-3xl font-black">Skutočná marža ≠ predajná cena mínus nákup.</h2>
+                <p class="mt-4 text-slate-400 text-sm leading-relaxed">Modelový príklad ukazuje, prečo treba pred nákupom započítať všetky relevantné náklady.</p>
 
                 <div class="mt-7 space-y-3">
-
                     <div class="flex justify-between border-b border-slate-800 pb-3">
                         <span class="text-slate-400">Nákup</span>
                         <strong>10 €</strong>
                     </div>
-
                     <div class="flex justify-between border-b border-slate-800 pb-3">
                         <span class="text-slate-400">Doprava</span>
                         <strong>2,50 €</strong>
                     </div>
-
                     <div class="flex justify-between border-b border-slate-800 pb-3">
                         <span class="text-slate-400">Predaj</span>
                         <strong>25 €</strong>
                     </div>
-
                     <div class="flex justify-between pt-2 text-lg">
                         <span class="font-bold">Modelový rozdiel</span>
-                        <strong class="text-emerald-400">
-                            12,50 €
-                        </strong>
+                        <strong class="text-emerald-400">12,50 €</strong>
                     </div>
-
                 </div>
 
-                <p class="mt-5 text-xs text-slate-500">
-                    Modelový príklad. Nejde o garantovaný výsledok.
-                </p>
-
+                <p class="mt-5 text-xs text-slate-500">Modelový príklad. Nejde o garantovaný výsledok.</p>
             </div>
 
-
             <div class="glass rounded-3xl p-8">
-
-                <span class="text-emerald-400 text-xs font-black uppercase tracking-widest">
-                    Supplier Verification
-                </span>
-
-                <h2 class="mt-3 text-2xl sm:text-3xl font-black">
-                    Predtým, než pošleš peniaze.
-                </h2>
+                <span class="text-emerald-400 text-xs font-black uppercase tracking-widest">Supplier Verification</span>
+                <h2 class="mt-3 text-2xl sm:text-3xl font-black">Predtým, než pošleš peniaze.</h2>
 
                 <div class="mt-6 grid sm:grid-cols-2 gap-3">
-
                     <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800">
                         <i class="fa-solid fa-building text-indigo-400"></i>
                         <span class="ml-2 text-sm font-semibold">Firma</span>
                     </div>
-
                     <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800">
                         <i class="fa-solid fa-globe text-indigo-400"></i>
                         <span class="ml-2 text-sm font-semibold">Web</span>
                     </div>
-
                     <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800">
                         <i class="fa-solid fa-id-card text-indigo-400"></i>
                         <span class="ml-2 text-sm font-semibold">IČO / VAT</span>
                     </div>
-
                     <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800">
                         <i class="fa-solid fa-star text-yellow-400"></i>
                         <span class="ml-2 text-sm font-semibold">Recenzie</span>
                     </div>
-
                     <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800">
                         <i class="fa-solid fa-credit-card text-emerald-400"></i>
                         <span class="ml-2 text-sm font-semibold">Platba</span>
                     </div>
-
                     <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800">
                         <i class="fa-solid fa-triangle-exclamation text-orange-400"></i>
                         <span class="ml-2 text-sm font-semibold">Rizikové signály</span>
                     </div>
-
                 </div>
-
             </div>
-
         </div>
-
     </div>
-
 </section>
 
-
-<!-- ========================================================= -->
 <!-- HOW IT WORKS -->
-<!-- ========================================================= -->
-
 <section id="ako-to-funguje" class="py-24">
-
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
-
         <div class="text-center mb-14">
-
-            <span class="text-indigo-400 text-xs font-black uppercase tracking-[.25em]">
-                Jednoduchý proces
-            </span>
-
-            <h2 class="mt-3 text-3xl sm:text-5xl font-black">
-                Ako dostaneš e-book?
-            </h2>
-
+            <span class="text-indigo-400 text-xs font-black uppercase tracking-[.25em]">Jednoduchý proces</span>
+            <h2 class="mt-3 text-3xl sm:text-5xl font-black">Ako dostaneš e-book?</h2>
         </div>
-
 
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-
-            <div class="relative glass rounded-3xl p-7">
-
-                <div class="text-5xl font-black text-indigo-500/20">
-                    01
-                </div>
-
-                <h3 class="mt-2 font-black text-lg">
-                    Vyberieš e-book
-                </h3>
-
-                <p class="mt-2 text-sm text-slate-400">
-                    Rozhodneš sa, či je VendorList #1 pre teba.
-                </p>
-
-            </div>
-
-
             <div class="glass rounded-3xl p-7">
-
-                <div class="text-5xl font-black text-indigo-500/20">
-                    02
-                </div>
-
-                <h3 class="mt-2 font-black text-lg">
-                    Napíšeš nám
-                </h3>
-
-                <p class="mt-2 text-sm text-slate-400">
-                    Kontaktuješ nás cez Instagram @vendor.list_sk_cz.
-                </p>
-
+                <div class="text-5xl font-black text-indigo-500/20">01</div>
+                <h3 class="mt-2 font-black text-lg">Vyberieš e-book</h3>
+                <p class="mt-2 text-sm text-slate-400">Rozhodneš sa, či je VendorList #1 pre teba.</p>
             </div>
-
-
             <div class="glass rounded-3xl p-7">
-
-                <div class="text-5xl font-black text-indigo-500/20">
-                    03
-                </div>
-
-                <h3 class="mt-2 font-black text-lg">
-                    Uhradíš 10 €
-                </h3>
-
-                <p class="mt-2 text-sm text-slate-400">
-                    Po dohode dokončíš platbu podľa inštrukcií.
-                </p>
-
+                <div class="text-5xl font-black text-indigo-500/20">02</div>
+                <h3 class="mt-2 font-black text-lg">Napíšeš nám</h3>
+                <p class="mt-2 text-sm text-slate-400">Kontaktuješ nás cez Instagram @vendor.list_sk_cz.</p>
             </div>
-
-
             <div class="glass rounded-3xl p-7">
-
-                <div class="text-5xl font-black text-indigo-500/20">
-                    04
-                </div>
-
-                <h3 class="mt-2 font-black text-lg">
-                    Dostaneš materiály
-                </h3>
-
-                <p class="mt-2 text-sm text-slate-400">
-                    E-book a priložený Resell Kit ti doručíme manuálne.
-                </p>
-
+                <div class="text-5xl font-black text-indigo-500/20">03</div>
+                <h3 class="mt-2 font-black text-lg">Uhradíš 10 €</h3>
+                <p class="mt-2 text-sm text-slate-400">Po dohode dokončíš platbu podľa inštrukcií.</p>
             </div>
-
+            <div class="glass rounded-3xl p-7">
+                <div class="text-5xl font-black text-indigo-500/20">04</div>
+                <h3 class="mt-2 font-black text-lg">Dostaneš materiály</h3>
+                <p class="mt-2 text-sm text-slate-400">E-book a priložený Resell Kit ti doručíme manuálne.</p>
+            </div>
         </div>
-
     </div>
-
 </section>
 
-
-<!-- ========================================================= -->
 <!-- BONUSES -->
-<!-- ========================================================= -->
-
 <section id="bonusy" class="py-20 bg-slate-900/70">
-
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
-
         <div class="text-center mb-12">
-
-            <span class="text-yellow-400 text-xs font-black uppercase tracking-[.25em]">
-                RESSELL KIT
-            </span>
-
-            <h2 class="mt-3 text-3xl sm:text-5xl font-black">
-                Bonusy, ktoré máš v balíku.
-            </h2>
-
+            <span class="text-yellow-400 text-xs font-black uppercase tracking-[.25em]">RESSELL KIT</span>
+            <h2 class="mt-3 text-3xl sm:text-5xl font-black">Bonusy, ktoré máš v balíku.</h2>
         </div>
-
 
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
-
             <div class="glass rounded-3xl p-7">
-
-                <div class="text-3xl">
-                    🛡️
-                </div>
-
-                <h3 class="mt-5 font-black text-lg">
-                    BONUS #1
-                </h3>
-
-                <p class="mt-1 font-bold">
-                    Supplier Verification
-                </p>
-
-                <p class="mt-3 text-sm text-slate-400 leading-relaxed">
-                    Kontrolný zoznam pred nákupom od dodávateľa.
-                </p>
-
+                <div class="text-3xl">🛡️</div>
+                <h3 class="mt-5 font-black text-lg">BONUS #1</h3>
+                <p class="mt-1 font-bold">Supplier Verification</p>
+                <p class="mt-3 text-sm text-slate-400 leading-relaxed">Kontrolný zoznam pred nákupom od dodávateľa.</p>
             </div>
-
-
             <div class="glass rounded-3xl p-7">
-
-                <div class="text-3xl">
-                    📊
-                </div>
-
-                <h3 class="mt-5 font-black text-lg">
-                    BONUS #2
-                </h3>
-
-                <p class="mt-1 font-bold">
-                    Kalkulačka marže
-                </p>
-
-                <p class="mt-3 text-sm text-slate-400 leading-relaxed">
-                    Pomôcka na výpočet nákladov a modelového zisku.
-                </p>
-
+                <div class="text-3xl">📊</div>
+                <h3 class="mt-5 font-black text-lg">BONUS #2</h3>
+                <p class="mt-1 font-bold">Kalkulačka marže</p>
+                <p class="mt-3 text-sm text-slate-400 leading-relaxed">Pomôcka na výpočet nákladov a modelového zisku.</p>
             </div>
-
-
             <div class="glass rounded-3xl p-7">
-
-                <div class="text-3xl">
-                    💬
-                </div>
-
-                <h3 class="mt-5 font-black text-lg">
-                    BONUS #3
-                </h3>
-
-                <p class="mt-1 font-bold">
-                    20 šablón správ
-                </p>
-
-                <p class="mt-3 text-sm text-slate-400 leading-relaxed">
-                    Šablóny pre komunikáciu so supplierom.
-                </p>
-
+                <div class="text-3xl">💬</div>
+                <h3 class="mt-5 font-black text-lg">BONUS #3</h3>
+                <p class="mt-1 font-bold">20 šablón správ</p>
+                <p class="mt-3 text-sm text-slate-400 leading-relaxed">Šablóny pre komunikáciu so supplierom.</p>
             </div>
-
-
             <div class="glass rounded-3xl p-7">
-
-                <div class="text-3xl">
-                    📅
-                </div>
-
-                <h3 class="mt-5 font-black text-lg">
-                    BONUS #4
-                </h3>
-
-                <p class="mt-1 font-bold">
-                    30-dňový plán
-                </p>
-
-                <p class="mt-3 text-sm text-slate-400 leading-relaxed">
-                    Akčné kroky na prvých 30 dní.
-                </p>
-
+                <div class="text-3xl">📅</div>
+                <h3 class="mt-5 font-black text-lg">BONUS #4</h3>
+                <p class="mt-1 font-bold">30-dňový plán</p>
+                <p class="mt-3 text-sm text-slate-400 leading-relaxed">Akčné kroky na prvých 30 dní.</p>
             </div>
-
         </div>
-
     </div>
-
 </section>
 
-
-<!-- ========================================================= -->
 <!-- WHO IT IS FOR -->
-<!-- ========================================================= -->
-
 <section class="py-20">
-
     <div class="max-w-5xl mx-auto px-4 sm:px-6">
-
         <div class="grid md:grid-cols-2 gap-5">
-
             <div class="rounded-3xl bg-emerald-950/30 border border-emerald-500/20 p-8">
-
-                <h2 class="text-2xl font-black text-emerald-400">
-                    ✓ Pre koho je
-                </h2>
-
+                <h2 class="text-2xl font-black text-emerald-400">✓ Pre koho je</h2>
                 <div class="mt-6 space-y-3 text-slate-300">
-
                     <p>✓ Úplný začiatočník</p>
                     <p>✓ Chceš začať s malým kapitálom</p>
                     <p>✓ Chceš pochopiť resell</p>
                     <p>✓ Chceš preverovať dodávateľov</p>
                     <p>✓ Chceš počítať reálny zisk</p>
                     <p>✓ Chceš postupovať systematicky</p>
-
                 </div>
-
             </div>
 
-
             <div class="rounded-3xl bg-red-950/20 border border-red-500/20 p-8">
-
-                <h2 class="text-2xl font-black text-red-400">
-                    ✕ Pre koho nie je
-                </h2>
-
+                <h2 class="text-2xl font-black text-red-400">✕ Pre koho nie je</h2>
                 <div class="mt-6 space-y-3 text-slate-300">
-
                     <p>✕ Hľadáš garantovaný zisk</p>
                     <p>✕ Chceš peniaze bez práce</p>
                     <p>✕ Čakáš „tajný trik“ na zbohatnutie</p>
                     <p>✕ Chceš predávať nelegálne falzifikáty</p>
                     <p>✕ Nechceš riešiť riziko a náklady</p>
-
                 </div>
-
             </div>
-
         </div>
-
     </div>
-
 </section>
 
-
-<!-- ========================================================= -->
 <!-- TRANSPARENCY -->
-<!-- ========================================================= -->
-
 <section class="py-16">
-
     <div class="max-w-5xl mx-auto px-4 sm:px-6">
-
         <div class="rounded-3xl bg-emerald-950/30 border border-emerald-500/25 p-8 sm:p-10">
-
             <div class="flex flex-col sm:flex-row gap-6 items-start">
-
                 <div class="w-14 h-14 shrink-0 rounded-2xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-2xl">
                     <i class="fa-solid fa-scale-balanced"></i>
                 </div>
-
                 <div>
-
-                    <h2 class="text-2xl font-black text-emerald-400">
-                        Bez falošných sľubov.
-                    </h2>
-
+                    <h2 class="text-2xl font-black text-emerald-400">Bez falošných sľubov.</h2>
                     <p class="mt-3 text-slate-300 leading-relaxed">
-                        VendorList #1 negarantuje žiadny konkrétny zisk.
-                        Výsledok závisí od výberu produktu, nákladov,
-                        konkurencie, predajnej ceny, marketingu a práce predajcu.
+                        VendorList #1 negarantuje žiadny konkrétny zisk. Výsledok závisí od výberu produktu, nákladov, konkurencie, predajnej ceny, marketingu a práce predajcu.
                     </p>
-
                     <p class="mt-3 text-sm text-slate-500">
-                        Informácie o EÚ pravidlách majú vzdelávací charakter.
-                        Pred komerčným predajom si over aktuálne povinnosti
-                        pre konkrétny produkt a krajinu.
+                        Informácie o EÚ pravidlách majú vzdelávací charakter. Pred komerčným predajom si over aktuálne povinnosti pre konkrétny produkt a krajinu.
                     </p>
-
                 </div>
-
             </div>
-
         </div>
-
     </div>
-
 </section>
 
-
-<!-- ========================================================= -->
 <!-- PRICING -->
-<!-- ========================================================= -->
-
 <section id="kupit" class="py-24">
-
     <div class="max-w-4xl mx-auto px-4 sm:px-6">
-
         <div class="relative overflow-hidden rounded-[32px] border-2 border-indigo-500/70 bg-gradient-to-b from-indigo-950/70 to-slate-950 p-8 sm:p-12 shadow-glow">
-
             <div class="absolute top-0 right-0 w-64 h-64 bg-indigo-600/20 blur-[90px] rounded-full"></div>
-
             <div class="relative text-center">
-
-                <span class="inline-block px-4 py-2 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 text-xs font-black uppercase tracking-widest">
-                    Úvodná cena
-                </span>
-
-                <h2 class="mt-5 text-3xl sm:text-5xl font-black">
-                    VendorList #1
-                </h2>
-
-                <p class="mt-2 text-xl text-indigo-300 font-bold">
-                    RESELL OD 0 €
-                </p>
+                <span class="inline-block px-4 py-2 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 text-xs font-black uppercase tracking-widest">Úvodná cena</span>
+                <h2 class="mt-5 text-3xl sm:text-5xl font-black">VendorList #1</h2>
+                <p class="mt-2 text-xl text-indigo-300 font-bold">RESELL OD 0 €</p>
 
                 <div class="mt-7">
-
-                    <span class="text-6xl sm:text-7xl font-black">
-                        10 €
-                    </span>
-
+                    <span class="text-6xl sm:text-7xl font-black">10 €</span>
                 </div>
 
                 <div class="mt-8 grid sm:grid-cols-2 gap-3 text-left max-w-xl mx-auto">
-
-                    <div class="p-4 rounded-2xl bg-white/5">
-                        ✓ Kompletný e-book
-                    </div>
-
-                    <div class="p-4 rounded-2xl bg-white/5">
-                        ✓ Resell Kit
-                    </div>
-
-                    <div class="p-4 rounded-2xl bg-white/5">
-                        ✓ Supplier Verification
-                    </div>
-
-                    <div class="p-4 rounded-2xl bg-white/5">
-                        ✓ Kalkulačka marže
-                    </div>
-
-                    <div class="p-4 rounded-2xl bg-white/5">
-                        ✓ 20 šablón správ
-                    </div>
-
-                    <div class="p-4 rounded-2xl bg-white/5">
-                        ✓ 30-dňový plán
-                    </div>
-
+                    <div class="p-4 rounded-2xl bg-white/5">✓ Kompletný e-book</div>
+                    <div class="p-4 rounded-2xl bg-white/5">✓ Resell Kit</div>
+                    <div class="p-4 rounded-2xl bg-white/5">✓ Supplier Verification</div>
+                    <div class="p-4 rounded-2xl bg-white/5">✓ Kalkulačka marže</div>
+                    <div class="p-4 rounded-2xl bg-white/5">✓ 20 šablón správ</div>
+                    <div class="p-4 rounded-2xl bg-white/5">✓ 30-dňový plán</div>
                 </div>
 
-                <a
-                    href="https://ig.me/m/vendor.list_sk_cz"
-                    target="_blank"
-                    rel="noopener"
-                    class="mt-9 inline-flex w-full sm:w-auto items-center justify-center gap-3 bg-white text-indigo-700 hover:bg-slate-100 px-9 py-4 rounded-2xl font-black text-lg transition"
-                >
+                <a href="https://ig.me/m/vendor.list_sk_cz" target="_blank" rel="noopener" class="mt-9 inline-flex w-full sm:w-auto items-center justify-center gap-3 bg-white text-indigo-700 hover:bg-slate-100 px-9 py-4 rounded-2xl font-black text-lg transition">
                     <i class="fa-brands fa-instagram"></i>
                     Chcem VendorList #1 za 10 €
                 </a>
-
-                <p class="mt-4 text-xs text-slate-500">
-                    Po kliknutí sa otvorí Instagram komunikácia.
-                </p>
-
+                <p class="mt-4 text-xs text-slate-500">Po kliknutí sa otvorí Instagram komunikácia.</p>
             </div>
-
         </div>
-
     </div>
-
 </section>
 
-
-<!-- ========================================================= -->
 <!-- FAQ -->
-<!-- ========================================================= -->
-
 <section id="faq" class="py-20 bg-slate-900/60">
-
     <div class="max-w-3xl mx-auto px-4 sm:px-6">
-
         <div class="text-center mb-10">
-
-            <span class="text-indigo-400 text-xs font-black uppercase tracking-widest">
-                FAQ
-            </span>
-
-            <h2 class="mt-3 text-3xl sm:text-5xl font-black">
-                Časté otázky
-            </h2>
-
+            <span class="text-indigo-400 text-xs font-black uppercase tracking-widest">FAQ</span>
+            <h2 class="mt-3 text-3xl sm:text-5xl font-black">Časté otázky</h2>
         </div>
 
-
         <div class="space-y-3">
-
             <details class="glass rounded-2xl p-5 group">
-
                 <summary class="cursor-pointer list-none flex justify-between items-center font-bold">
                     Ako dostanem e-book?
                     <i class="fa-solid fa-chevron-down text-indigo-400 group-open:rotate-180 transition"></i>
                 </summary>
-
                 <p class="mt-4 text-sm text-slate-400 leading-relaxed">
-                    Kontaktuješ nás cez Instagram @vendor.list_sk_cz.
-                    Po potvrdení platby ti e-book a Resell Kit doručíme manuálne.
+                    Kontaktuješ nás cez Instagram @vendor.list_sk_cz. Po potvrdení platby ti e-book a Resell Kit doručíme manuálne.
                 </p>
-
             </details>
 
-
             <details class="glass rounded-2xl p-5 group">
-
                 <summary class="cursor-pointer list-none flex justify-between items-center font-bold">
                     Koľko e-book stojí?
                     <i class="fa-solid fa-chevron-down text-indigo-400 group-open:rotate-180 transition"></i>
                 </summary>
-
-                <p class="mt-4 text-sm text-slate-400 leading-relaxed">
-                    Aktuálna cena VendorList #1 je 10 €.
-                </p>
-
+                <p class="mt-4 text-sm text-slate-400 leading-relaxed">Aktuálna cena VendorList #1 je 10 €.</p>
             </details>
 
-
             <details class="glass rounded-2xl p-5 group">
-
                 <summary class="cursor-pointer list-none flex justify-between items-center font-bold">
                     Je vhodný pre úplného začiatočníka?
                     <i class="fa-solid fa-chevron-down text-indigo-400 group-open:rotate-180 transition"></i>
                 </summary>
-
                 <p class="mt-4 text-sm text-slate-400 leading-relaxed">
-                    Áno. Obsah začína vysvetlením základov resellu a postupne prechádza
-                    k výberu produktu, dodávateľom, marži a prvému predaju.
+                    Áno. Obsah začína vysvetlením základov resellu a postupne prechádza k výberu produktu, dodávateľom, marži a prvému predaju.
                 </p>
-
             </details>
 
-
             <details class="glass rounded-2xl p-5 group">
-
                 <summary class="cursor-pointer list-none flex justify-between items-center font-bold">
                     Obsahuje konkrétnych dodávateľov?
                     <i class="fa-solid fa-chevron-down text-indigo-400 group-open:rotate-180 transition"></i>
                 </summary>
-
                 <p class="mt-4 text-sm text-slate-400 leading-relaxed">
-                    Hlavným obsahom e-booku je proces hľadania a preverovania dodávateľov,
-                    nie zoznam garantovaných supplierov.
+                    Hlavným obsahom e-booku je proces hľadania a preverovania dodávateľov, nie zoznam garantovaných supplierov.
                 </p>
-
             </details>
 
-
             <details class="glass rounded-2xl p-5 group">
-
                 <summary class="cursor-pointer list-none flex justify-between items-center font-bold">
                     Garantuje e-book zisk?
                     <i class="fa-solid fa-chevron-down text-indigo-400 group-open:rotate-180 transition"></i>
                 </summary>
-
-                <p class="mt-4 text-sm text-slate-400 leading-relaxed">
-                    Nie. Žiadny konkrétny zisk nie je garantovaný.
-                </p>
-
+                <p class="mt-4 text-sm text-slate-400 leading-relaxed">Nie. Žiadny konkrétny zisk nie je garantovaný.</p>
             </details>
 
-
             <details class="glass rounded-2xl p-5 group">
-
                 <summary class="cursor-pointer list-none flex justify-between items-center font-bold">
                     Môžem začať s malým kapitálom?
                     <i class="fa-solid fa-chevron-down text-indigo-400 group-open:rotate-180 transition"></i>
                 </summary>
-
                 <p class="mt-4 text-sm text-slate-400 leading-relaxed">
-                    E-book je vytvorený pre začínajúcich predajcov a vysvetľuje,
-                    ako minimalizovať zbytočné viazanie kapitálu.
+                    E-book je vytvorený pre začínajúcich predajcov a vysvetľuje, ako minimalizovať zbytočné viazanie kapitálu.
                 </p>
-
             </details>
 
-
             <details class="glass rounded-2xl p-5 group">
-
                 <summary class="cursor-pointer list-none flex justify-between items-center font-bold">
                     Ako vás kontaktujem?
                     <i class="fa-solid fa-chevron-down text-indigo-400 group-open:rotate-180 transition"></i>
                 </summary>
-
                 <p class="mt-4 text-sm text-slate-400 leading-relaxed">
-                    Instagram:
-                    <strong class="text-indigo-400">
-                        @vendor.list_sk_cz
-                    </strong>
+                    Instagram: <strong class="text-indigo-400">@vendor.list_sk_cz</strong>
                 </p>
-
             </details>
-
         </div>
-
     </div>
-
 </section>
 
-
-<!-- ========================================================= -->
 <!-- FINAL CTA -->
-<!-- ========================================================= -->
-
 <section class="py-24">
-
     <div class="max-w-5xl mx-auto px-4 sm:px-6">
-
         <div class="relative overflow-hidden rounded-[32px] bg-gradient-to-r from-indigo-600 to-violet-600 p-8 sm:p-14 text-center">
-
             <div class="absolute inset-0 bg-white/5"></div>
-
             <div class="relative">
-
-                <div class="text-5xl">
-                    🚀
-                </div>
-
-                <h2 class="mt-5 text-3xl sm:text-6xl font-black">
-                    Nezačínaj naslepo.
-                </h2>
-
-                <p class="mt-4 max-w-xl mx-auto text-indigo-100 text-base sm:text-lg">
-                    Najprv pochop proces. Potom riskuj peniaze.
-                </p>
-
-                <a
-                    href="https://ig.me/m/vendor.list_sk_cz"
-                    target="_blank"
-                    rel="noopener"
-                    class="mt-8 inline-flex items-center justify-center gap-3 bg-white text-indigo-700 hover:bg-slate-100 px-8 py-4 rounded-2xl font-black text-lg transition"
-                >
+                <div class="text-5xl">🚀</div>
+                <h2 class="mt-5 text-3xl sm:text-6xl font-black">Nezačínaj naslepo.</h2>
+                <p class="mt-4 max-w-xl mx-auto text-indigo-100 text-base sm:text-lg">Najprv pochop proces. Potom riskuj peniaze.</p>
+                <a href="https://ig.me/m/vendor.list_sk_cz" target="_blank" rel="noopener" class="mt-8 inline-flex items-center justify-center gap-3 bg-white text-indigo-700 hover:bg-slate-100 px-8 py-4 rounded-2xl font-black text-lg transition">
                     <i class="fa-brands fa-instagram"></i>
                     Získať VendorList #1 za 10 €
                 </a>
-
             </div>
-
         </div>
-
     </div>
-
 </section>
 
-
-<!-- ========================================================= -->
 <!-- FOOTER -->
-<!-- ========================================================= -->
-
 <footer class="bg-slate-950 border-t border-slate-800">
-
     <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
-
         <div class="flex flex-col md:flex-row justify-between gap-8">
-
             <div>
-
                 <div class="text-2xl font-black">
                     Vendor<span class="text-indigo-500">List</span>
                 </div>
-
-                <p class="mt-2 text-sm text-slate-500 max-w-sm">
-                    Praktické materiály pre začínajúcich resellerov.
-                </p>
-
+                <p class="mt-2 text-sm text-slate-500 max-w-sm">Praktické materiály pre začínajúcich resellerov.</p>
             </div>
 
             <div class="flex flex-col gap-3 text-sm">
-
-                <a
-                    href="https://ig.me/m/vendor.list_sk_cz"
-                    target="_blank"
-                    rel="noopener"
-                    class="text-slate-400 hover:text-indigo-400 transition"
-                >
-                    <i class="fa-brands fa-instagram mr-2"></i>
-                    @vendor.list_sk_cz
+                <a href="https://ig.me/m/vendor.list_sk_cz" target="_blank" rel="noopener" class="text-slate-400 hover:text-indigo-400 transition">
+                    <i class="fa-brands fa-instagram mr-2"></i>@vendor.list_sk_cz
                 </a>
-
-                <a
-                    href="#faq"
-                    class="text-slate-400 hover:text-indigo-400 transition"
-                >
-                    FAQ
-                </a>
-
+                <a href="#faq" class="text-slate-400 hover:text-indigo-400 transition">FAQ</a>
             </div>
-
         </div>
 
         <div class="border-t border-slate-800 mt-8 pt-6 text-center">
-
-            <p class="text-xs text-slate-600">
-                © 2026 VendorList. Všetky práva vyhradené.
-            </p>
-
+            <p class="text-xs text-slate-600">© 2026 VendorList. Všetky práva vyhradené.</p>
             <p class="mt-2 text-xs text-slate-600 max-w-2xl mx-auto">
-                Tento materiál má vzdelávací charakter a nepredstavuje finančné,
-                právne ani daňové poradenstvo.
+                Tento materiál má vzdelávací charakter a nepredstavuje finančné, právne ani daňové poradenstvo.
             </p>
-
         </div>
-
     </div>
-
 </footer>
 
-
-<!-- ========================================================= -->
 <!-- JAVASCRIPT -->
-<!-- ========================================================= -->
-
 <script>
-
     const menuBtn = document.getElementById("menuBtn");
     const mobileMenu = document.getElementById("mobileMenu");
 
     menuBtn.addEventListener("click", () => {
-
         mobileMenu.classList.toggle("hidden");
-
         const icon = menuBtn.querySelector("i");
 
         if (mobileMenu.classList.contains("hidden")) {
-
-            icon.classList.remove("fa-xmark");
-            icon.classList.add("fa-bars");
-
+            icon.className = "fa-solid fa-bars";
             menuBtn.setAttribute("aria-label", "Otvoriť menu");
-
         } else {
-
-            icon.classList.remove("fa-bars");
-            icon.classList.add("fa-xmark");
-
+            icon.className = "fa-solid fa-xmark";
             menuBtn.setAttribute("aria-label", "Zavrieť menu");
-
         }
-
     });
-
 
     document.querySelectorAll("#mobileMenu a").forEach(link => {
-
         link.addEventListener("click", () => {
-
             mobileMenu.classList.add("hidden");
-
-            const icon = menuBtn.querySelector("i");
-
-            icon.classList.remove("fa-xmark");
-            icon.classList.add("fa-bars");
-
+            menuBtn.querySelector("i").className = "fa-solid fa-bars";
             menuBtn.setAttribute("aria-label", "Otvoriť menu");
-
         });
-
     });
 
+    // Reveal efekt pri scrollovaní pre plynulý chod
+    const revealElements = document.querySelectorAll(".glass, section > div");
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("fade-up");
+                obs.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.08 });
 
-    // Jemný reveal efekt pri scrollovaní
-    const revealElements = document.querySelectorAll(
-        ".glass, section > div"
-    );
-
-    const observer = new IntersectionObserver(
-        entries => {
-
-            entries.forEach(entry => {
-
-                if (entry.isIntersecting) {
-
-                    entry.target.classList.add("fade-up");
-
-                    observer.unobserve(entry.target);
-
-                }
-
-            });
-
-        },
-        {
-            threshold: 0.08
-        }
-    );
-
-    revealElements.forEach(element => {
-        observer.observe(element);
-    });
-
+    revealElements.forEach(el => observer.observe(el));
 </script>
 
 </body>
