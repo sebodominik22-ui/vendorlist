@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="sk" class="scroll-smooth">
+<html lang="sk" class="scroll-smooth" id="htmlRoot">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>VendorList | Profesionálna výbava pre resellerov</title>
-    <meta name="description" content="Overené know-how a zoznam dodávateľov pre úspešný resell na slovenskom a českom trhu.">
+    <title data-lang-sk="VendorList | Profesionálny Reseller Toolkit" data-lang-en="VendorList | Professional Reseller Toolkit">VendorList | Profesionálny Reseller Toolkit</title>
+    <meta name="description" content="Overený know-how a dodávateľská databáza pre úspešný reselling.">
 
     <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -113,30 +113,41 @@
             </a>
 
             <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
-                <a href="#ebooky" class="hover:text-indigo-400 transition">Produkty</a>
-                <a href="#obsah" class="hover:text-indigo-400 transition">Obsah e-booku</a>
-                <a href="#dodavatelia" class="hover:text-indigo-400 transition">Zoznam dodávateľov</a>
-                <a href="#faq" class="hover:text-indigo-400 transition">FAQ</a>
+                <a href="#ebooky" class="hover:text-indigo-400 transition" data-lang-sk="Produkty" data-lang-en="Products">Produkty</a>
+                <a href="#obsah" class="hover:text-indigo-400 transition" data-lang-sk="Obsah sprievodcu" data-lang-en="Guide Contents">Obsah sprievodcu</a>
+                <a href="#dodavatelia" class="hover:text-indigo-400 transition" data-lang-sk="Zoznam dodávateľov" data-lang-en="Supplier List">Zoznam dodávateľov</a>
+                <a href="#faq" class="hover:text-indigo-400 transition" data-lang-sk="FAQ" data-lang-en="FAQ">FAQ</a>
             </div>
 
             <div class="hidden sm:flex items-center gap-4">
-                <a href="#ebooky" class="bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2.5 rounded-xl font-semibold text-sm transition shadow-lg shadow-indigo-600/20">
+                <!-- PREPÍNAČ JAZYKOV -->
+                <div class="flex items-center bg-slate-900 border border-slate-800 rounded-xl p-1 text-xs font-semibold">
+                    <button onclick="setLanguage('sk')" id="btnSk" class="px-3 py-1.5 rounded-lg transition bg-indigo-600 text-white">SK</button>
+                    <button onclick="setLanguage('en')" id="btnEn" class="px-3 py-1.5 rounded-lg transition text-slate-400 hover:text-white">EN</button>
+                </div>
+
+                <a href="#ebooky" class="bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2.5 rounded-xl font-semibold text-sm transition shadow-lg shadow-indigo-600/20" data-lang-sk="Získať prístup" data-lang-en="Get Access">
                     Získať prístup
                 </a>
             </div>
 
-            <button id="menuBtn" aria-label="Otvoriť menu" class="md:hidden w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 flex items-center justify-center">
+            <button id="menuBtn" aria-label="Open menu" class="md:hidden w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 flex items-center justify-center">
                 <i class="fa-solid fa-bars text-lg"></i>
             </button>
         </div>
 
         <div id="mobileMenu" class="hidden md:hidden pb-6 pt-2 border-t border-slate-800/80">
             <div class="flex flex-col gap-2">
-                <a href="#ebooky" class="p-3 rounded-xl hover:bg-slate-900 font-medium text-slate-300">Produkty</a>
-                <a href="#obsah" class="p-3 rounded-xl hover:bg-slate-900 font-medium text-slate-300">Obsah e-booku</a>
-                <a href="#dodavatelia" class="p-3 rounded-xl hover:bg-slate-900 font-medium text-slate-300">Zoznam dodávateľov</a>
-                <a href="#faq" class="p-3 rounded-xl hover:bg-slate-900 font-medium text-slate-300">FAQ</a>
-                <a href="#ebooky" class="mt-2 p-3 rounded-xl bg-indigo-600 text-center font-bold text-white shadow-lg shadow-indigo-600/20">
+                <!-- Prepínač v mobile -->
+                <div class="flex items-center justify-center gap-2 py-2 bg-slate-900/50 rounded-xl mb-2">
+                    <button onclick="setLanguage('sk')" id="mBtnSk" class="px-4 py-1.5 rounded-lg text-xs font-semibold bg-indigo-600 text-white">Slovenčina</button>
+                    <button onclick="setLanguage('en')" id="mBtnEn" class="px-4 py-1.5 rounded-lg text-xs font-semibold text-slate-400">English</button>
+                </div>
+                <a href="#ebooky" class="p-3 rounded-xl hover:bg-slate-900 font-medium text-slate-300" data-lang-sk="Produkty" data-lang-en="Products">Produkty</a>
+                <a href="#obsah" class="p-3 rounded-xl hover:bg-slate-900 font-medium text-slate-300" data-lang-sk="Obsah sprievodcu" data-lang-en="Guide Contents">Obsah sprievodcu</a>
+                <a href="#dodavatelia" class="p-3 rounded-xl hover:bg-slate-900 font-medium text-slate-300" data-lang-sk="Zoznam dodávateľov" data-lang-en="Supplier List">Zoznam dodávateľov</a>
+                <a href="#faq" class="p-3 rounded-xl hover:bg-slate-900 font-medium text-slate-300" data-lang-sk="FAQ" data-lang-en="FAQ">FAQ</a>
+                <a href="#ebooky" class="mt-2 p-3 rounded-xl bg-indigo-600 text-center font-bold text-white shadow-lg shadow-indigo-600/20" data-lang-sk="Získať prístup" data-lang-en="Get Access">
                     Získať prístup
                 </a>
             </div>
@@ -150,25 +161,25 @@
     <div class="relative max-w-5xl mx-auto px-4 sm:px-6 text-center">
         <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass text-xs font-semibold text-indigo-300 mb-8 shadow-sm">
             <span class="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span>
-            PREMIUM RESELL MANUÁL & DATABÁZA
+            <span data-lang-sk="PREMIUM RESELL MANUÁL & DATABÁZA" data-lang-en="PREMIUM RESELL MANUAL & DATABASE">PREMIUM RESELL MANUÁL & DATABÁZA</span>
         </div>
 
         <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.08] max-w-4xl mx-auto">
-            Skrátťe cestu k zisku. <br>
-            <span class="gradient-text">Vybudujte stabilný resell biznis.</span>
+            <span data-lang-sk="Skráť svoju cestu k zisku." data-lang-en="Shorten your path to profit.">Skráť svoju cestu k zisku.</span> <br>
+            <span class="gradient-text" data-lang-sk="Vybuduj stabilný reselling biznis." data-lang-en="Build a stable reselling business.">Vybuduj stabilný reselling biznis.</span>
         </h1>
 
-        <p class="mt-6 max-w-2xl mx-auto text-slate-400 text-base sm:text-lg leading-relaxed font-normal">
-            Získajte overené know-how, presné postupy a priame kontakty na preverených supplierov. Vyhnite sa začiatočníckym chybám a preplácaniu tovaru.
+        <p class="mt-6 max-w-2xl mx-auto text-slate-400 text-base sm:text-lg leading-relaxed font-normal" data-lang-sk="Získaj overený know-how, presné postupy a priame kontakty na preverených dodávateľov. Vyhni sa začiatočníckym chybám a preplácaniu tovaru." data-lang-en="Get verified know-how, precise procedures, and direct contacts to vetted suppliers. Avoid beginner mistakes and overpaying for stock.">
+            Získaj overený know-how, presné postupy a priame kontakty na preverených dodávateľov. Vyhni sa začiatočníckym chybám a preplácaniu tovaru.
         </p>
 
         <div class="mt-10 flex flex-col sm:flex-row justify-center items-center gap-4">
             <a href="#ebooky" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white px-8 py-4 rounded-xl font-bold text-base transition shadow-xl shadow-indigo-600/25">
-                Prezrieť ponuku materiálov
+                <span data-lang-sk="Pozrieť ponuku materiálov" data-lang-en="View Material Offer">Pozrieť ponuku materiálov</span>
                 <i class="fa-solid fa-arrow-right text-xs"></i>
             </a>
             <a href="#obsah" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 glass hover:bg-slate-800/80 text-slate-300 px-8 py-4 rounded-xl font-semibold text-base transition border border-slate-800">
-                Preskúmať osnovu
+                <span data-lang-sk="Preskúmať obsah" data-lang-en="Explore Outline">Preskúmať obsah</span>
             </a>
         </div>
 
@@ -177,22 +188,22 @@
             <div class="flex items-center gap-3">
                 <div class="w-8 h-8 rounded-lg bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-sm font-bold">✓</div>
                 <div>
-                    <div class="text-sm font-bold text-slate-200">10 podrobných kapitol</div>
-                    <div class="text-xs text-slate-500">Kompletná štruktúra</div>
+                    <div class="text-sm font-bold text-slate-200" data-lang-sk="10 podrobných kapitol" data-lang-en="10 Detailed Chapters">10 podrobných kapitol</div>
+                    <div class="text-xs text-slate-500" data-lang-sk="Kompletná štruktúra" data-lang-en="Complete structure">Kompletná štruktúra</div>
                 </div>
             </div>
             <div class="flex items-center gap-3">
                 <div class="w-8 h-8 rounded-lg bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-sm font-bold">✓</div>
                 <div>
-                    <div class="text-sm font-bold text-slate-200">Overení dodávatelia</div>
-                    <div class="text-xs text-slate-500">Priame kontakty</div>
+                    <div class="text-sm font-bold text-slate-200" data-lang-sk="Overení dodávatelia" data-lang-en="Verified Suppliers">Overení dodávatelia</div>
+                    <div class="text-xs text-slate-500" data-lang-sk="Priame kontakty" data-lang-en="Direct contacts">Priame kontakty</div>
                 </div>
             </div>
             <div class="col-span-2 md:col-span-1 flex items-center gap-3">
                 <div class="w-8 h-8 rounded-lg bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-sm font-bold">✓</div>
                 <div>
-                    <div class="text-sm font-bold text-slate-200">Praktické šablóny</div>
-                    <div class="text-xs text-slate-500">Pripravené na použitie</div>
+                    <div class="text-sm font-bold text-slate-200" data-lang-sk="Praktické šablóny" data-lang-en="Practical Templates">Praktické šablóny</div>
+                    <div class="text-xs text-slate-500" data-lang-sk="Pripravené na použitie" data-lang-en="Ready to use">Pripravené na použitie</div>
                 </div>
             </div>
         </div>
@@ -203,9 +214,9 @@
 <section id="ebooky" class="py-24 border-t border-slate-800/60 bg-slate-950/40">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
         <div class="text-center max-w-2xl mx-auto mb-16">
-            <span class="text-indigo-400 text-xs font-bold uppercase tracking-widest">Katalóg produktov</span>
-            <h2 class="mt-3 text-3xl sm:text-4xl font-extrabold text-white">Vyberte si nástroje pre váš rast</h2>
-            <p class="mt-3 text-slate-400 text-sm sm:text-base">Investícia do informácií, ktoré vám ušetria stovky eur na nevydarených nákupoch.</p>
+            <span class="text-indigo-400 text-xs font-bold uppercase tracking-widest" data-lang-sk="Katalóg produktov" data-lang-en="Product Catalog">Katalóg produktov</span>
+            <h2 class="mt-3 text-3xl sm:text-4xl font-extrabold text-white" data-lang-sk="Vyber si svoje nástroje pre rast" data-lang-en="Choose your tools for growth">Vyber si svoje nástroje pre rast</h2>
+            <p class="mt-3 text-slate-400 text-sm sm:text-base" data-lang-sk="Investícia do informácií, ktoré ti ušetria stovky eur na nevydarených nákupoch." data-lang-en="An investment in information that will save you hundreds of euros on failed purchases.">Investícia do informácií, ktoré ti ušetria stovky eur na nevydarených nákupoch.</p>
         </div>
 
         <div class="grid lg:grid-cols-2 gap-8 items-stretch">
@@ -216,19 +227,19 @@
                         <span class="px-3.5 py-1 rounded-full bg-indigo-500/10 text-indigo-400 text-xs font-bold tracking-wide">E-BOOK #1</span>
                         <span class="text-3xl font-black text-white">15 €</span>
                     </div>
-                    <h3 class="mt-6 text-2xl font-bold text-white tracking-tight">VendorList #1: Resell manuál</h3>
-                    <p class="mt-3 text-slate-400 text-sm sm:text-base leading-relaxed">
-                        Kompletný sprievodca pre každého, kto chce pochopiť mechanizmy resellu, správne vyberať produkty, počítať marže a vyjednávať so suppliermi.
+                    <h3 class="mt-6 text-2xl font-bold text-white tracking-tight">VendorList #1: Resell Manuál</h3>
+                    <p class="mt-3 text-slate-400 text-sm sm:text-base leading-relaxed" data-lang-sk="Komplexný sprievodca pre každého, kto chce pochopiť resellingové mechanizmy, správne vyberať produkty, počítať marže a jednať s dodávateľmi." data-lang-en="A comprehensive guide for anyone wanting to understand reselling mechanisms, correctly select products, calculate margins, and negotiate with suppliers.">
+                        Komplexný sprievodca pre každého, kto chce pochopiť resellingové mechanizmy, správne vyberať produkty, počítať marže a jednať s dodávateľmi.
                     </p>
                     <div class="mt-8 space-y-3.5 text-sm text-slate-300">
-                        <div class="flex gap-3 items-center"><i class="fa-solid fa-circle-check text-indigo-400"></i> 10 pokročilých kapitol o fungovaní trhu</div>
-                        <div class="flex gap-3 items-center"><i class="fa-solid fa-circle-check text-indigo-400"></i> Kalkulácia marží a riadenie rizika</div>
-                        <div class="flex gap-3 items-center"><i class="fa-solid fa-circle-check text-indigo-400"></i> Šablóny správ pre efektívnu komunikáciu</div>
+                        <div class="flex gap-3 items-center"><i class="fa-solid fa-circle-check text-indigo-400"></i> <span data-lang-sk="10 pokročilých kapitol o fungovaní trhu" data-lang-en="10 advanced market operation chapters">10 pokročilých kapitol o fungovaní trhu</span></div>
+                        <div class="flex gap-3 items-center"><i class="fa-solid fa-circle-check text-indigo-400"></i> <span data-lang-sk="Výpočet marže a manažment rizika" data-lang-en="Margin calculation & risk management">Výpočet marže a manažment rizika</span></div>
+                        <div class="flex gap-3 items-center"><i class="fa-solid fa-circle-check text-indigo-400"></i> <span data-lang-sk="Vzorové správy pre efektívnu komunikáciu" data-lang-en="Message templates for efficient communication">Vzorové správy pre efektívnu komunikáciu</span></div>
                     </div>
                 </div>
                 <div class="mt-10 pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4">
-                    <a href="#obsah" class="text-xs font-semibold text-indigo-400 hover:text-indigo-300 transition">Detailná osnova e-booku →</a>
-                    <a href="https://ig.me/m/vendor.list_sk_cz" target="_blank" rel="noopener" class="w-full sm:w-auto text-center bg-indigo-600 hover:bg-indigo-500 text-white px-6 py-3.5 rounded-xl font-bold text-sm transition shadow-lg shadow-indigo-600/20">
+                    <a href="#obsah" class="text-xs font-semibold text-indigo-400 hover:text-indigo-300 transition" data-lang-sk="Podrobná osnova knihy →" data-lang-en="Detailed book outline →">Podrobná osnova knihy →</a>
+                    <a href="https://ig.me/m/vendor.list_sk_cz" target="_blank" rel="noopener" class="w-full sm:w-auto text-center bg-indigo-600 hover:bg-indigo-500 text-white px-6 py-3.5 rounded-xl font-bold text-sm transition shadow-lg shadow-indigo-600/20" data-lang-sk="Získať za 15 €" data-lang-en="Get for 15 €">
                         Získať za 15 €
                     </a>
                 </div>
@@ -242,18 +253,18 @@
                         <span class="text-3xl font-black text-white">10 €</span>
                     </div>
                     <h3 class="mt-6 text-2xl font-bold text-white tracking-tight">VendorList #2: Zoznam dodávateľov</h3>
-                    <p class="mt-3 text-slate-400 text-sm sm:text-base leading-relaxed">
-                        Exkluzívna, prehľadne usporiadaná databáza overených kontaktov a supplierov pre rôzne kategórie tovaru. Ušetrite desiatky hodín hľadania.
+                    <p class="mt-3 text-slate-400 text-sm sm:text-base leading-relaxed" data-lang-sk="Exkluzívna, prehľadne štruktúrou databáza overených kontaktov a dodávateľov pre rôzne produktové kategórie. Ušetri desiatky hodín hľadania." data-lang-en="An exclusive, neatly structured database of verified contacts and suppliers across various product categories. Save dozens of hours of searching.">
+                        Exkluzívna, prehľadne štruktúrou databáza overených kontaktov a dodávateľov pre rôzne produktové kategórie. Ušetri desiatky hodín hľadania.
                     </p>
                     <div class="mt-8 space-y-3.5 text-sm text-slate-300">
-                        <div class="flex gap-3 items-center"><i class="fa-solid fa-circle-check text-indigo-400"></i> Preverené kontakty na supplierov</div>
-                        <div class="flex gap-3 items-center"><i class="fa-solid fa-circle-check text-indigo-400"></i> Kategorizácia podľa sortimentu</div>
-                        <div class="flex gap-3 items-center"><i class="fa-solid fa-circle-check text-indigo-400"></i> Pravidlá bezpečného nákupu a platforiem</div>
+                        <div class="flex gap-3 items-center"><i class="fa-solid fa-circle-check text-indigo-400"></i> <span data-lang-sk="Preverené kontakty na dodávateľov" data-lang-en="Vetted supplier contacts">Preverené kontakty na dodávateľov</span></div>
+                        <div class="flex gap-3 items-center"><i class="fa-solid fa-circle-check text-indigo-400"></i> <span data-lang-sk="Rozdelené podľa typov sortimentu" data-lang-en="Categorized by product assortment">Rozdelené podľa typov sortimentu</span></div>
+                        <div class="flex gap-3 items-center"><i class="fa-solid fa-circle-check text-indigo-400"></i> <span data-lang-sk="Pravidlá bezpečného nákupu a platforiem" data-lang-en="Safe purchasing rules & platform guidelines">Pravidlá bezpečného nákupu a platforiem</span></div>
                     </div>
                 </div>
                 <div class="mt-10 pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4">
-                    <a href="#dodavatelia" class="text-xs font-semibold text-indigo-400 hover:text-indigo-300 transition">Prehľad dodávateľov →</a>
-                    <a href="https://ig.me/m/vendor.list_sk_cz" target="_blank" rel="noopener" class="w-full sm:w-auto text-center bg-indigo-600 hover:bg-indigo-500 text-white px-6 py-3.5 rounded-xl font-bold text-sm transition shadow-lg shadow-indigo-600/20">
+                    <a href="#dodavatelia" class="text-xs font-semibold text-indigo-400 hover:text-indigo-300 transition" data-lang-sk="Prehľad dodávateľov →" data-lang-en="Supplier overview →">Prehľad dodávateľov →</a>
+                    <a href="https://ig.me/m/vendor.list_sk_cz" target="_blank" rel="noopener" class="w-full sm:w-auto text-center bg-indigo-600 hover:bg-indigo-500 text-white px-6 py-3.5 rounded-xl font-bold text-sm transition shadow-lg shadow-indigo-600/20" data-lang-sk="Získať za 10 €" data-lang-en="Get for 10 €">
                         Získať za 10 €
                     </a>
                 </div>
@@ -267,88 +278,88 @@
     <div class="max-w-4xl mx-auto px-4 sm:px-6">
         <div class="text-center mb-16">
             <span class="text-indigo-400 text-xs font-bold uppercase tracking-widest">VendorList #1</span>
-            <h2 class="mt-3 text-3xl sm:text-4xl font-extrabold text-white">Struktúra kapitol</h2>
-            <p class="mt-2 text-slate-400 text-sm">Zistite, čo všetko vás v manuáli čaká.</p>
+            <h2 class="mt-3 text-3xl sm:text-4xl font-extrabold text-white" data-lang-sk="Štruktúra kapitol" data-lang-en="Chapter Structure">Štruktúra kapitol</h2>
+            <p class="mt-2 text-slate-400 text-sm" data-lang-sk="Zistite, čo všetko na vás v manuáli čaká." data-lang-en="Discover everything awaiting you in the manual.">Zistite, čo všetko na vás v manuáli čaká.</p>
         </div>
 
         <div class="space-y-4">
             <div class="glass rounded-2xl p-6 flex gap-5 items-start">
                 <span class="text-xl font-black text-indigo-500/70 font-mono">01</span>
                 <div>
-                    <h3 class="text-lg font-bold text-white">Anatómia reálneho resellu</h3>
-                    <p class="mt-1.5 text-sm text-slate-400 leading-relaxed">Pochopenie trhovej dynamiky, tvorba marží a jasné rozdiely medzi resellom, dropshippingom a veľkoobchodom.</p>
+                    <h3 class="text-lg font-bold text-white" data-lang-sk="Anatómia reálneho resellingu" data-lang-en="Anatomy of Real Reselling">Anatómia reálneho resellingu</h3>
+                    <p class="mt-1.5 text-sm text-slate-400 leading-relaxed" data-lang-sk="Pochopenie dynamiky trhu, tvorby marží a jasné rozdiely medzi resellingom, dropshippingom a veľkoobchodom." data-lang-en="Understanding market dynamics, margin creation, and clear distinctions between reselling, dropshipping, and wholesale.">Pochopenie dynamiky trhu, tvorby marží a jasné rozdiely medzi resellingom, dropshippingom a veľkoobchodom.</p>
                 </div>
             </div>
 
             <div class="glass rounded-2xl p-6 flex gap-5 items-start">
                 <span class="text-xl font-black text-indigo-500/70 font-mono">02</span>
                 <div>
-                    <h3 class="text-lg font-bold text-white">Strategický výber produktov</h3>
-                    <p class="mt-1.5 text-sm text-slate-400 leading-relaxed">Analýza dopytu, vyhodnocovanie konkurenčného prostredia a faktory, ktoré rozhodujú o tom, či sa tovar bude predávať.</p>
+                    <h3 class="text-lg font-bold text-white" data-lang-sk="Strategický výber produktov" data-lang-en="Strategic Product Selection">Strategický výber produktov</h3>
+                    <p class="mt-1.5 text-sm text-slate-400 leading-relaxed" data-lang-sk="Analýza dopytu, vyhodnotenie konkurenčného prostredia a kľúčové faktory rozhodujúce o tom, či sa tovar predá." data-lang-en="Demand analysis, competitive landscape evaluation, and key factors determining whether a product will sell.">Analýza dopytu, vyhodnotenie konkurenčného prostredia a kľúčové faktory rozhodujúce o tom, či sa tovar predá.</p>
                 </div>
             </div>
 
             <div class="glass rounded-2xl p-6 flex gap-5 items-start">
                 <span class="text-xl font-black text-indigo-500/70 font-mono">03</span>
                 <div>
-                    <h3 class="text-lg font-bold text-white">Metódy vyhľadávania supplierov</h3>
-                    <p class="mt-1.5 text-sm text-slate-400 leading-relaxed">Efektívne využitie B2B platforiem, veľkoobchodov a správne postupy pri nadväzovaní prvých kontaktov.</p>
+                    <h3 class="text-lg font-bold text-white" data-lang-sk="Metódy vyhľadávania dodávateľov" data-lang-en="Supplier Sourcing Methods">Metódy vyhľadávania dodávateľov</h3>
+                    <p class="mt-1.5 text-sm text-slate-400 leading-relaxed" data-lang-sk="Efektívne využitie B2B platforiem, veľkoobchodov a správne techniky nadväzovania prvých kontaktov." data-lang-en="Effective use of B2B platforms, wholesalers, and proper techniques for establishing initial contacts.">Efektívne využitie B2B platforiem, veľkoobchodov a správne techniky nadväzovania prvých kontaktov.</p>
                 </div>
             </div>
 
             <div class="glass rounded-2xl p-6 flex gap-5 items-start">
                 <span class="text-xl font-black text-indigo-500/70 font-mono">04</span>
                 <div>
-                    <h3 class="text-lg font-bold text-white">Ochrana pred podvodmi a scammi</h3>
-                    <p class="mt-1.5 text-sm text-slate-400 leading-relaxed">Hĺbková previerka dôveryhodnosti firmy, kontrola IČO/VAT, recenzií a bezpečných platobných kanálov.</p>
+                    <h3 class="text-lg font-bold text-white" data-lang-sk="Ochrana pred podvodníkmi a scammi" data-lang-en="Protection Against Scams & Fraud">Ochrana pred podvodníkmi a scammi</h3>
+                    <p class="mt-1.5 text-sm text-slate-400 leading-relaxed" data-lang-sk="Hĺbkové preverenie dôveryhodnosti firiem, kontrola IČ DPH/IČO, analýza recenzií a bezpečné platobné brány." data-lang-en="In-depth vetting of company credibility, VAT/ID checks, review analysis, and secure payment channels.">Hĺbkové preverenie dôveryhodnosti firiem, kontrola IČ DPH/IČO, analýza recenzií a bezpečné platobné brány.</p>
                 </div>
             </div>
 
             <div class="glass rounded-2xl p-6 flex gap-5 items-start">
                 <span class="text-xl font-black text-indigo-500/70 font-mono">05</span>
                 <div>
-                    <h3 class="text-lg font-bold text-white">Pokročilý kalkul marží a nákladov</h3>
-                    <p class="mt-1.5 text-sm text-slate-400 leading-relaxed">Zohľadnenie dopravy, colných poplatkov, platobných brán a skrytých výdavkov pred samotnou objednávkou.</p>
+                    <h3 class="text-lg font-bold text-white" data-lang-sk="Pokročilý výpočet marží a nákladov" data-lang-en="Advanced Margin & Cost Calculation">Pokročilý výpočet marží a nákladov</h3>
+                    <p class="mt-1.5 text-sm text-slate-400 leading-relaxed" data-lang-sk="Započítanie dopravy, cla, platobných brán a skrytých poplatkov ešte pred zadaním objednávky." data-lang-en="Accounting for shipping, custom duties, payment gateways, and hidden expenses before placing an order.">Započítanie dopravy, cla, platobných brán a skrytých poplatkov ešte pred zadaním objednávky.</p>
                 </div>
             </div>
 
             <div class="glass rounded-2xl p-6 flex gap-5 items-start">
                 <span class="text-xl font-black text-indigo-500/70 font-mono">06</span>
                 <div>
-                    <h3 class="text-lg font-bold text-white">Tvorba konverzných ponúk</h3>
-                    <p class="mt-1.5 text-sm text-slate-400 leading-relaxed">Príprava vizuálov, profesionálny copywriting a optimalizácia predaja na platformách ako Vinted, Marketplace či sociálne siete.</p>
+                    <h3 class="text-lg font-bold text-white" data-lang-sk="Tvorba predajných inzerátov, ktoré konvertujú" data-lang-en="Creating High-Converting Offers">Tvorba predajných inzerátov, ktoré konvertujú</h3>
+                    <p class="mt-1.5 text-sm text-slate-400 leading-relaxed" data-lang-sk="Vizuálna príprava, profesionálny copywriting a optimalizácia predaja na platformách ako Vinted, Marketplace či sociálne siete." data-lang-en="Visual preparation, professional copywriting, and sales optimization across platforms like Vinted, Marketplace, or social media.">Vizuálna príprava, profesionálny copywriting a optimalizácia predaja na platformách ako Vinted, Marketplace či sociálne siete.</p>
                 </div>
             </div>
 
             <div class="glass rounded-2xl p-6 flex gap-5 items-start">
                 <span class="text-xl font-black text-indigo-500/70 font-mono">07</span>
                 <div>
-                    <h3 class="text-lg font-bold text-white">Profesionálna komunikácia s dodávateľmi</h3>
-                    <p class="mt-1.5 text-sm text-slate-400 leading-relaxed">Vzorové správy pre vyjednávanie minimálneho odberového množstva (MOQ), cien, vzoriek a riešenie reklamácií.</p>
+                    <h3 class="text-lg font-bold text-white" data-lang-sk="Profesionálna komunikácia s dodávateľom" data-lang-en="Professional Supplier Communication">Profesionálna komunikácia s dodávateľom</h3>
+                    <p class="mt-1.5 text-sm text-slate-400 leading-relaxed" data-lang-sk="Vzorové správy na vyjednávanie množstevných zliav (MOQ), cien, vzoriek a riešenie prípadných reklamácií." data-lang-en="Template messages for negotiating Minimum Order Quantities (MOQ), pricing, samples, and handling claims.">Vzorové správy na vyjednávanie množstevných zliav (MOQ), cien, vzoriek a riešenie prípadných reklamácií.</p>
                 </div>
             </div>
 
             <div class="glass rounded-2xl p-6 flex gap-5 items-start">
                 <span class="text-xl font-black text-indigo-500/70 font-mono">08</span>
                 <div>
-                    <h3 class="text-lg font-bold text-white">Realizácia prvého obchodu</h3>
-                    <p class="mt-1.5 text-sm text-slate-400 leading-relaxed">Predvýberové kontrolné zoznamy, minimalizácia skladového rizika a stratégia nakladania s pomalšie obrátkovým tovarom.</p>
+                    <h3 class="text-lg font-bold text-white" data-lang-sk="Realizácia prvého obchodu" data-lang-en="Executing Your First Deal">Realizácia prvého obchodu</h3>
+                    <p class="mt-1.5 text-sm text-slate-400 leading-relaxed" data-lang-sk="Checklist pred objednávkou, minimalizácia rizika pri skladoch a stratégie pre pomalšie sa predávajúci tovar." data-lang-en="Pre-order checklists, minimizing inventory risk, and strategies for handling slower-moving stock.">Checklist pred objednávkou, minimalizácia rizika pri skladoch a stratégie pre pomalšie sa predávajúci tovar.</p>
                 </div>
             </div>
 
             <div class="glass rounded-2xl p-6 flex gap-5 items-start">
                 <span class="text-xl font-black text-indigo-500/70 font-mono">09</span>
                 <div>
-                    <h3 class="text-lg font-bold text-white">Kapitálové riadenie a reinvestície</h3>
-                    <p class="mt-1.5 text-sm text-slate-400 leading-relaxed">Ako správne nakladať s prvým čistým ziskom a postupne rozširovať objem bez zbytočného úverového zaťaženia.</p>
+                    <h3 class="text-lg font-bold text-white" data-lang-sk="Manažment kapitálu a reinvestície" data-lang-en="Capital Management & Reinvestment">Manažment kapitálu a reinvestície</h3>
+                    <p class="mt-1.5 text-sm text-slate-400 leading-relaxed" data-lang-sk="Ako správne naložiť s prvým čistým ziskom a systematicky navyšovať objem bez zbytočného úverového zaťaženia." data-lang-en="How to properly handle your first net profit and systematically scale volume without unnecessary debt burdens.">Ako správne naložiť s prvým čistým ziskom a systematicky navyšovať objem bez zbytočného úverového zaťaženia.</p>
                 </div>
             </div>
 
             <div class="glass rounded-2xl p-6 flex gap-5 items-start">
                 <span class="text-xl font-black text-indigo-500/70 font-mono">10</span>
                 <div>
-                    <h3 class="text-lg font-bold text-white">30-dňový akčný plán & legislatívne minimum</h3>
-                    <p class="mt-1.5 text-sm text-slate-400 leading-relaxed">Časový harmonogram krokov od nuly po prvý predaj a základný prehľad povinností pri podnikaní a predaji v rámci EÚ.</p>
+                    <h3 class="text-lg font-bold text-white" data-lang-sk="30-dňový akčný plán a právne minimum" data-lang-en="30-Day Action Plan & Legal Minimum">30-dňový akčný plán a právne minimum</h3>
+                    <p class="mt-1.5 text-sm text-slate-400 leading-relaxed" data-lang-sk="Harmonogram krok za krokom od nuly po prvý predaj spolu so základným prehľadom legislatívy a povinností pri predaji v EÚ." data-lang-en="Step-by-step timeline from zero to your first sale, alongside a fundamental overview of compliance and EU sales obligations.">Harmonogram krok za krokom od nuly po prvý predaj spolu so základným prehľadom legislatívy a povinností pri predaji v EÚ.</p>
                 </div>
             </div>
         </div>
@@ -360,8 +371,8 @@
     <div class="max-w-4xl mx-auto px-4 sm:px-6">
         <div class="text-center mb-16">
             <span class="text-indigo-400 text-xs font-bold uppercase tracking-widest">VendorList #2</span>
-            <h2 class="mt-3 text-3xl sm:text-4xl font-extrabold text-white">Zoznam overených dodávateľov</h2>
-            <p class="mt-2 text-slate-400 text-sm">Prehľadná databáza vytvorená pre okamžité použitie.</p>
+            <h2 class="mt-3 text-3xl sm:text-4xl font-extrabold text-white" data-lang-sk="Zoznam overených dodávateľov" data-lang-en="Verified Supplier List">Zoznam overených dodávateľov</h2>
+            <p class="mt-2 text-slate-400 text-sm" data-lang-sk="Prehľadná databáza pripravená na okamžité použitie." data-lang-en="A clear database built for immediate use.">Prehľadná databáza pripravená na okamžité použitie.</p>
         </div>
 
         <div class="grid sm:grid-cols-2 gap-6">
@@ -369,32 +380,32 @@
                 <div class="w-10 h-10 rounded-xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center font-bold mb-4">
                     <i class="fa-solid fa-address-book text-sm"></i>
                 </div>
-                <h3 class="text-lg font-bold text-white">Priame kontakty</h3>
-                <p class="mt-2 text-sm text-slate-400 leading-relaxed">Ušetrite čas siahodlhým prieskumom trhu. Získajte prístup k prevereným kontaktom.</p>
+                <h3 class="text-lg font-bold text-white" data-lang-sk="Priame kontakty" data-lang-en="Direct Contacts">Priame kontakty</h3>
+                <p class="mt-2 text-sm text-slate-400 leading-relaxed" data-lang-sk="Ušetri čas zdĺhavým prieskumom trhu. Získaj prístup k prevereným kontaktom." data-lang-en="Save time on tedious market research. Gain access to verified contacts.">Ušetri čas zdĺhavým prieskumom trhu. Získaj prístup k prevereným kontaktom.</p>
             </div>
 
             <div class="glass rounded-2xl p-7">
                 <div class="w-10 h-10 rounded-xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center font-bold mb-4">
                     <i class="fa-solid fa-folder-tree text-sm"></i>
                 </div>
-                <h3 class="text-lg font-bold text-white">Rozdelenie do kategórií</h3>
-                <p class="mt-2 text-sm text-slate-400 leading-relaxed">Logické členenie podľa druhu tovaru a odvetvia pre okamžitú orientáciu vo výbere.</p>
+                <h3 class="text-lg font-bold text-white" data-lang-sk="Prehľadné členenie" data-lang-en="Categorized Layout">Prehľadné členenie</h3>
+                <p class="mt-2 text-sm text-slate-400 leading-relaxed" data-lang-sk="Logické rozdelenie podľa typov produktov a odvetví pre okamžitú orientáciu pri výbere." data-lang-en="Logical organization by product type and sector for instant orientation during selection.">Logické rozdelenie podľa typov produktov a odvetví pre okamžitú orientáciu pri výbere.</p>
             </div>
 
             <div class="glass rounded-2xl p-7">
                 <div class="w-10 h-10 rounded-xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center font-bold mb-4">
                     <i class="fa-solid fa-shield-halved text-sm"></i>
                 </div>
-                <h3 class="text-lg font-bold text-white">Bezpečné transakcie</h3>
-                <p class="mt-2 text-sm text-slate-400 leading-relaxed">Návody a odporúčania, ako správne nastaviť obchodné podmienky a vyhnúť sa rizikovým platbám.</p>
+                <h3 class="text-lg font-bold text-white" data-lang-sk="Bezpečné transakcie" data-lang-en="Secure Transactions">Bezpečné transakcie</h3>
+                <p class="mt-2 text-sm text-slate-400 leading-relaxed" data-lang-sk="Návody a odporúčania, ako správne nastaviť obchodné podmienky a vyhnúť sa rizikovým platbám." data-lang-en="Guides and recommendations on how to correctly set trade terms and avoid risky payments.">Návody a odporúčania, ako správne nastaviť obchodné podmienky a vyhnúť sa rizikovým platbám.</p>
             </div>
 
             <div class="glass rounded-2xl p-7">
                 <div class="w-10 h-10 rounded-xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center font-bold mb-4">
                     <i class="fa-solid fa-bolt text-sm"></i>
                 </div>
-                <h3 class="text-lg font-bold text-white">Okamžitá použiteľnosť</h3>
-                <p class="mt-2 text-sm text-slate-400 leading-relaxed">Materiály pripravené na to, aby ste mohli začať komunikovať so suppliermi v priebehu pár minút.</p>
+                <h3 class="text-lg font-bold text-white" data-lang-sk="Okamžitá využiteľnosť" data-lang-en="Instant Usability">Okamžitá využiteľnosť</h3>
+                <p class="mt-2 text-sm text-slate-400 leading-relaxed" data-lang-sk="Materiály pripravené tak, aby si mohol začať komunikovať s dodávateľmi v priebehu niekoľkých minút." data-lang-en="Materials prepared so you can start communicating with suppliers within minutes.">Materiály pripravené tak, aby si mohol začať komunikovať s dodávateľmi v priebehu niekoľkých minút.</p>
             </div>
         </div>
     </div>
@@ -404,48 +415,48 @@
 <section id="faq" class="py-24">
     <div class="max-w-3xl mx-auto px-4 sm:px-6">
         <div class="text-center mb-16">
-            <span class="text-indigo-400 text-xs font-bold uppercase tracking-widest">Podpora</span>
-            <h2 class="mt-3 text-3xl sm:text-4xl font-extrabold text-white">Často kladené otázky</h2>
+            <span class="text-indigo-400 text-xs font-bold uppercase tracking-widest" data-lang-sk="Podpora" data-lang-en="Support">Podpora</span>
+            <h2 class="mt-3 text-3xl sm:text-4xl font-extrabold text-white" data-lang-sk="Často kladené otázky" data-lang-en="Frequently Asked Questions">Často kladené otázky</h2>
         </div>
 
         <div class="space-y-4">
             <details class="glass rounded-2xl p-6 group">
                 <summary class="cursor-pointer list-none flex justify-between items-center font-semibold text-white">
-                    Ako prebieha doručenie materiálov?
+                    <span data-lang-sk="Ako prebieha dodanie materiálov?" data-lang-en="How are the materials delivered?">Ako prebieha dodanie materiálov?</span>
                     <i class="fa-solid fa-chevron-down text-indigo-400 group-open:rotate-180 transition text-sm"></i>
                 </summary>
-                <p class="mt-4 text-sm text-slate-400 leading-relaxed">
-                    Po úspešnom potvrdení platby vám budú digitálne materiály doručené priamo na základe dohodnutých pokynov.
+                <p class="mt-4 text-sm text-slate-400 leading-relaxed" data-lang-sk="Po úspešnom potvrdení platby sú digitálne materiály dodané priamo na základe dohodnutých pokynov." data-lang-en="Upon successful payment confirmation, digital materials are delivered directly based on agreed instructions.">
+                    Po úspešnom potvrdení platby sú digitálne materiály dodané priamo na základe dohodnutých pokynov.
                 </p>
             </details>
 
             <details class="glass rounded-2xl p-6 group">
                 <summary class="cursor-pointer list-none flex justify-between items-center font-semibold text-white">
-                    Aké sú rozdiely medzi e-bookom #1 a #2?
+                    <span data-lang-sk="Aký je rozdiel medzi E-bookom #1 a #2?" data-lang-en="What are the differences between E-book #1 and #2?">Aký je rozdiel medzi E-bookom #1 a #2?</span>
                     <i class="fa-solid fa-chevron-down text-indigo-400 group-open:rotate-180 transition text-sm"></i>
                 </summary>
-                <p class="mt-4 text-sm text-slate-400 leading-relaxed">
-                    VendorList #1 (15 €) je vzdelávací manuál a stratégia pre správne vedenie resellu. VendorList #2 (10 €) predstavuje špecifickú databázu overených kontaktov a dodávateľov.
+                <p class="mt-4 text-sm text-slate-400 leading-relaxed" data-lang-sk="VendorList #1 (15 €) je vzdelávací manuál a strategická príručka pre správne vedenie reselling biznisu. VendorList #2 (10 €) je špecifická databáza overených kontaktov a dodávateľov." data-lang-en="VendorList #1 (15 €) is an educational manual and strategy guide for running a proper reselling business. VendorList #2 (10 €) is a specific database of verified contacts and suppliers.">
+                    VendorList #1 (15 €) je vzdelávací manuál a strategická príručka pre správne vedenie reselling biznisu. VendorList #2 (10 €) je špecifická databáza overených kontaktov a dodávateľov.
                 </p>
             </details>
 
             <details class="glass rounded-2xl p-6 group">
                 <summary class="cursor-pointer list-none flex justify-between items-center font-semibold text-white">
-                    Môžem si zakúpiť oba e-booky naraz?
+                    <span data-lang-sk="Môžem si kúpiť oba e-booky naraz?" data-lang-en="Can I purchase both e-books at once?">Môžem si kúpiť oba e-booky naraz?</span>
                     <i class="fa-solid fa-chevron-down text-indigo-400 group-open:rotate-180 transition text-sm"></i>
                 </summary>
-                <p class="mt-4 text-sm text-slate-400 leading-relaxed">
-                    Áno, odporúčame kombináciu oboch materiálov pre komplexný prehľad a priamy prístup k supplierom.
+                <p class="mt-4 text-sm text-slate-400 leading-relaxed" data-lang-sk="Áno, pre komplexné know-how a priamy prístup k dodávateľom odporúčame kombináciu oboch materiálov." data-lang-en="Yes, we recommend combining both materials for comprehensive insights and direct supplier access.">
+                    Áno, pre komplexné know-how a priamy prístup k dodávateľom odporúčame kombináciu oboch materiálov.
                 </p>
             </details>
 
             <details class="glass rounded-2xl p-6 group">
                 <summary class="cursor-pointer list-none flex justify-between items-center font-semibold text-white">
-                    Sú zisky z resellu garantované?
+                    <span data-lang-sk="Sú zisky z resellingu garantované?" data-lang-en="Are reselling profits guaranteed?">Sú zisky z resellingu garantované?</span>
                     <i class="fa-solid fa-chevron-down text-indigo-400 group-open:rotate-180 transition text-sm"></i>
                 </summary>
-                <p class="mt-4 text-sm text-slate-400 leading-relaxed">
-                    Nie. Finálne výsledky závisia od vašej osobnej aktivity, nasadenia a aktuálnej situácie na trhu. Materiály slúžia ako odborný sprievodca.
+                <p class="mt-4 text-sm text-slate-400 leading-relaxed" data-lang-sk="Nie. Výsledky závisia od vašej osobnej aktivity, úsilia a trhových podmienok. Materiály slúžia ako odborné vedenie." data-lang-en="No. Final results depend on your personal activity, effort, and market conditions. Materials serve as professional guidance.">
+                    Nie. Výsledky závisia od vašej osobnej aktivity, úsilia a trhových podmienok. Materiály slúžia ako odborné vedenie.
                 </p>
             </details>
         </div>
@@ -458,13 +469,13 @@
         <div class="glass rounded-3xl p-8 sm:p-14 border border-indigo-500/20 shadow-2xl relative overflow-hidden">
             <div class="absolute -right-24 -top-24 w-72 h-72 rounded-full bg-indigo-600/10 blur-3xl pointer-events-none"></div>
             <div class="relative">
-                <span class="text-indigo-400 text-xs font-bold uppercase tracking-widest">Budúcnosť vášho biznisu</span>
-                <h2 class="mt-3 text-3xl sm:text-5xl font-black text-white tracking-tight">Každý deň bez plánu je strata príležitostí.</h2>
-                <p class="mt-4 max-w-xl mx-auto text-slate-300 text-base sm:text-lg leading-relaxed">
-                    Prestaňte hádať, čo funguje. Využite overené know-how, vybudujte si reálne základy a posuňte svoje výsledky na vyššiu úroveň.
+                <span class="text-indigo-400 text-xs font-bold uppercase tracking-widest" data-lang-sk="Vaša biznisová budúcnosť" data-lang-en="Your Business Future">Vaša biznisová budúcnosť</span>
+                <h2 class="mt-3 text-3xl sm:text-5xl font-black text-white tracking-tight" data-lang-sk="Každý deň bez plánu je stratená príležitosť." data-lang-en="Every day without a plan is a lost opportunity.">Každý deň bez plánu je stratená príležitosť.</h2>
+                <p class="mt-4 max-w-xl mx-auto text-slate-300 text-base sm:text-lg leading-relaxed" data-lang-sk="Prestaňte hádať, čo funguje. Využite overený know-how, vybudujte reálne základy a posuňte svoje výsledky na novú úroveň." data-lang-en="Stop guessing what works. Use verified know-how, build real foundations, and elevate your results to the next level.">
+                    Prestaňte hádať, čo funguje. Využite overený know-how, vybudujte reálne základy a posuňte svoje výsledky na novú úroveň.
                 </p>
                 <div class="mt-8 flex flex-col sm:flex-row justify-center gap-4">
-                    <a href="#ebooky" class="bg-indigo-600 hover:bg-indigo-500 text-white px-8 py-4 rounded-xl font-bold text-base transition shadow-lg shadow-indigo-600/25">
+                    <a href="#ebooky" class="bg-indigo-600 hover:bg-indigo-500 text-white px-8 py-4 rounded-xl font-bold text-base transition shadow-lg shadow-indigo-600/25" data-lang-sk="Vybrať materiál a začať" data-lang-en="Choose Material & Start">
                         Vybrať materiál a začať
                     </a>
                 </div>
@@ -481,20 +492,20 @@
                 <div class="text-xl font-bold text-white tracking-tight">
                     Vendor<span class="text-indigo-500 font-black">List</span>
                 </div>
-                <p class="mt-1 text-sm text-slate-500">Profesionálne materiály a databázy pre moderných resellerov.</p>
+                <p class="mt-1 text-sm text-slate-500" data-lang-sk="Profesionálne materiály a databázy pre moderných resellerov." data-lang-en="Professional materials and databases for modern resellers.">Profesionálne materiály a databázy pre moderných resellerov.</p>
             </div>
 
             <div class="flex items-center gap-6 text-sm text-slate-400">
-                <a href="#ebooky" class="hover:text-indigo-400 transition">Produkty</a>
-                <a href="#obsah" class="hover:text-indigo-400 transition">Obsah</a>
+                <a href="#ebooky" class="hover:text-indigo-400 transition" data-lang-sk="Produkty" data-lang-en="Products">Produkty</a>
+                <a href="#obsah" class="hover:text-indigo-400 transition" data-lang-sk="Obsah" data-lang-en="Content">Obsah</a>
                 <a href="#faq" class="hover:text-indigo-400 transition">FAQ</a>
             </div>
         </div>
 
         <div class="border-t border-slate-900 mt-8 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-600">
-            <p>© 2026 VendorList. Všetky práva vyhradené.</p>
-            <p class="max-w-xl text-center sm:text-right">
-                Informácie uvedené v materiáloch majú vzdelávací charakter a nepredstavujú investičné, právne ani finančné poradenstvo.
+            <p>© 2026 VendorList. All rights reserved.</p>
+            <p class="max-w-xl text-center sm:text-right" data-lang-sk="Informácie poskytované v týchto materiáloch slúžia výhradne na vzdelávacie účely a nepredstavujú investičné, právne ani finančné poradenstvo." data-lang-en="The information provided in these materials is for educational purposes only and does not constitute investment, legal, or financial advice.">
+                Informácie poskytované v týchto materiáloch slúžia výhradne na vzdelávacie účely a nepredstavujú investičné, právne ani finančné poradenstvo.
             </p>
         </div>
     </div>
@@ -502,6 +513,43 @@
 
 <!-- JAVASCRIPT -->
 <script>
+    // Prepínanie jazykov
+    function setLanguage(lang) {
+        // Zmena atributu lang na html tagu
+        document.getElementById('htmlRoot').setAttribute('lang', lang);
+
+        // Prepínanie aktívnych štýlov pre tlačidlá (desktop)
+        const btnSk = document.getElementById('btnSk');
+        const btnEn = document.getElementById('btnEn');
+        const mBtnSk = document.getElementById('mBtnSk');
+        const mBtnEn = document.getElementById('mBtnEn');
+
+        if (lang === 'sk') {
+            btnSk.className = "px-3 py-1.5 rounded-lg transition bg-indigo-600 text-white";
+            btnEn.className = "px-3 py-1.5 rounded-lg transition text-slate-400 hover:text-white";
+            if(mBtnSk && mBtnEn) {
+                mBtnSk.className = "px-4 py-1.5 rounded-lg text-xs font-semibold bg-indigo-600 text-white";
+                mBtnEn.className = "px-4 py-1.5 rounded-lg text-xs font-semibold text-slate-400";
+            }
+        } else {
+            btnEn.className = "px-3 py-1.5 rounded-lg transition bg-indigo-600 text-white";
+            btnSk.className = "px-3 py-1.5 rounded-lg transition text-slate-400 hover:text-white";
+            if(mBtnSk && mBtnEn) {
+                mBtnEn.className = "px-4 py-1.5 rounded-lg text-xs font-semibold bg-indigo-600 text-white";
+                mBtnSk.className = "px-4 py-1.5 rounded-lg text-xs font-semibold text-slate-400";
+            }
+        }
+
+        // Prechod všetkých elementov s definovanými jazykmi
+        document.querySelectorAll('[data-lang-sk]').forEach(el => {
+            if (lang === 'sk') {
+                el.innerText = el.getAttribute('data-lang-sk');
+            } else {
+                el.innerText = el.getAttribute('data-lang-en');
+            }
+        });
+    }
+
     const menuBtn = document.getElementById("menuBtn");
     const mobileMenu = document.getElementById("mobileMenu");
 
@@ -510,18 +558,18 @@
         const icon = menuBtn.querySelector("i");
         if (mobileMenu.classList.contains("hidden")) {
             icon.className = "fa-solid fa-bars text-lg";
-            menuBtn.setAttribute("aria-label", "Otvoriť menu");
+            menuBtn.setAttribute("aria-label", "Open menu");
         } else {
             icon.className = "fa-solid fa-xmark text-lg";
-            menuBtn.setAttribute("aria-label", "Zavrieť menu");
+            menuBtn.setAttribute("aria-label", "Close menu");
         }
     });
 
     document.querySelectorAll("#mobileMenu a").forEach(link => {
-        link.depend = link.addEventListener("click", () => {
+        link.addEventListener("click", () => {
             mobileMenu.classList.add("hidden");
             menuBtn.querySelector("i").className = "fa-solid fa-bars text-lg";
-            menuBtn.setAttribute("aria-label", "Otvoriť menu");
+            menuBtn.setAttribute("aria-label", "Open menu");
         });
     });
 
